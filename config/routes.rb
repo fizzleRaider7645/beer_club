@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   get '/login', to: 'application#home'
   post '/login', to: 'application#login'
   get '/logout' => 'application#logout'
