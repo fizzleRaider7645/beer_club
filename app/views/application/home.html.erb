@@ -1,0 +1,10 @@
+<h1>login</h1>
+
+<%= form_tag ({controller: 'application', action: 'login', method: 'post'}) do %>
+   <%= label_tag "Enter Your Username:" %>
+   <%= text_field_tag :username %><br />
+   <%= label_tag "Enter Your Password:" %>
+   <%= password_field_tag :password %><br />
+   <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+   <%= submit_tag "Sign In" %>
+<% end %>

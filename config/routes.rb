@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get '/login', to: 'application#home'
+  post '/login', to: 'application#login'
+  get '/logout' => 'application#logout'
   resources :medals
   resources :sessions
   resources :beers
