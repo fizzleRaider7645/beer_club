@@ -1,3 +1,4 @@
 class Medal < ApplicationRecord
-  belongs_to :user
+  # include Singleton
+  has_and_belongs_to_many :users
 end

@@ -1,2 +1,4 @@
 class MedalsController < ApplicationController
+
+  
 end

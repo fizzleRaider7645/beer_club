@@ -62,7 +62,11 @@ points
 
 TYPES OF MEDALS:
 
-name - "I remember when I had my first beer."
+ROOKIE
+name "I remember when I had my first beer."
 description - "Awarded upon a users first review"
 criteria(aka trigger event) - @user.beers.count >= 1
 point(s) - 1
+
+COUNTRY
+name -
