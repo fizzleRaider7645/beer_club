@@ -1,7 +1,10 @@
 Beer Club
 
-Description: Users can log, describe, rate beers they've consumed and share
+Description: Users can log, describe, rate beers they've consumed, and share
 recommendations with friends.
+
+Features:
+List beers by country, rating, ABV, IBUs
 
 
 Models:
@@ -11,9 +14,12 @@ Models:
 has_secure_password
 has_many :sessions
 has_many :beers, through: :sessions
+has_many :medals
 
 -attributes-
 username
+password_digest
+status
 
 *Beers*
 -relations-
@@ -26,7 +32,7 @@ country
 IBUs
 ABV
 description
-average_rating
+rating
 
 *Sessions*
 belongs_to :user
@@ -37,3 +43,13 @@ user_id
 beer_id
 date
 beer_rating
+
+*Medals*
+belongs_to :user
+
+-attributes-
+name
+user_id
+description
+criteria *** - NEED TO FIGURE OUT HOW TO IMPLEMENT
+points
