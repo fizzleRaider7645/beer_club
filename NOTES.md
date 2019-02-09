@@ -21,6 +21,8 @@ username
 password_digest
 status
 
+*******************************************************************************
+
 *Beers*
 -relations-
 has_many :sessions
@@ -34,6 +36,8 @@ ABV
 description
 rating
 
+*******************************************************************************
+
 *Sessions*
 belongs_to :user
 belongs_to :beer
@@ -44,6 +48,8 @@ beer_id
 date
 beer_rating
 
+*******************************************************************************
+
 *Medals*
 belongs_to :user
 
@@ -51,5 +57,12 @@ belongs_to :user
 name
 user_id
 description
-criteria *** - NEED TO FIGURE OUT HOW TO IMPLEMENT
+criteria
 points
+
+TYPES OF MEDALS:
+
+name - "I remember when I had my first beer."
+description - "Awarded upon a users first review"
+criteria(aka trigger event) - @user.beers.count >= 1
+point(s) - 1
