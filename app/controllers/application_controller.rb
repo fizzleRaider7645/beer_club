@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :require_login
+  skip_before_action :require_login, only: [:home, :login]
 
   def home
 
@@ -30,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to :login unless session.include? :user_id
+    redirect_to :login unless logged_in?
   end
 
   helper_method :current_user
