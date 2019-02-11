@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get '/', to: 'application#home'
-  post '/login', to: 'application#login'
-  get '/logout' => 'application#logout'
+  get '/', to: 'sessions#home'
+  post '/login', to: 'sessions#login'
+  post '/logout' => 'sessions#logout'
 
   resources :medals, only: [:index, :show] do
     resources :users, only: [:index]

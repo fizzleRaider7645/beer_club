@@ -1,12 +1,21 @@
 class SessionsController < ApplicationController
-  before_action :require_login
-  
-  def new
-    @session = Session.new
+  def home
+    
   end
 
-  def create
-    @session = Session.find_by(id: params[:id])
-    redirect_to :show
+  def login
+    @user = User.find_by(username: params[:username])
+    if @user.present? && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+    else
+      redirect_to '/'
+    end
   end
+
+  def logout
+    session.clear
+    redirect_to '/'
+  end
+
 end
