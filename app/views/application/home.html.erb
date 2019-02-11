@@ -1,10 +1,20 @@
-<h1>login</h1>
-
+<h1>Welcome to Beer Club</h1>
+<h2>New Beers</h2>
+<ul>
+<% Beer.new_to_beer_club.each do |beer| %>
+<li><%= beer.name %></li>
+<% end %>
+</ul>
+<br>
 <%= form_tag ({controller: 'application', action: 'login', method: 'post'}) do %>
-   <%= label_tag "Enter Your Username:" %>
+   <%= label_tag "Username:" %>
    <%= text_field_tag :username %><br />
-   <%= label_tag "Enter Your Password:" %>
+   <%= label_tag "Password:" %>
    <%= password_field_tag :password %><br />
-   <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-   <%= submit_tag "Sign In" %>
+   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+   <%= submit_tag "Login" %>
+<% end %>
+<br />
+<%= button_tag(:type => 'button') do %>
+  <% link_to "Create an Account", new_user_path, { :class=>"button_link" } %>
 <% end %>

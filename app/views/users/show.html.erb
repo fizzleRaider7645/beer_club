@@ -1,1 +1,13 @@
 <h1>Hello, <%= @user.username %></h1>
+
+
+<h2><%= link_to "Have a Session", new_user_session_path(@user) %></h2>
+
+
+<h2><%= link_to "Community", reviews_path %></h2>
+
+<!-- This is where you will see your reviews/wrtie your reviews -->
+<h2><%= link_to "See Your Sessions Diary", user_sessions_path(@user) %></h2>
+
+
+<h2><%= link_to "See Medals", user_medals_path(@user) %></h2>

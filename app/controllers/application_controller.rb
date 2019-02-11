@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   skip_before_action :require_login, only: [:home, :login]
 
   def home
-
   end
 
   def login
@@ -12,13 +11,13 @@ class ApplicationController < ActionController::Base
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      redirect_to new_user_path
+      redirect_to '/'
     end
   end
 
   def logout
     session.clear
-    redirect_to :login
+    redirect_to '/'
   end
 
   private
@@ -32,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to :login unless logged_in?
+    redirect_to '/' unless logged_in?
   end
 
   helper_method :current_user
