@@ -1,8 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :sessions
-  has_many :beers, through: :sessions
   has_many :reviews
+  has_many :beers, through: :reviews
   has_and_belongs_to_many :medals
 
 
