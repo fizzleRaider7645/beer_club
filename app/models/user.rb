@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :beers, through: :reviews
   has_and_belongs_to_many :medals
   validates :username, presence: true, uniqueness: true
+  validates :password, presence: true, uniqueness: true
 
 
   def award_rookie_medal?

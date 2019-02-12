@@ -6,6 +6,16 @@
 <% end %>
 </ul>
 <br>
+
+<% if @user && @user.errors.any? %>
+  <div id="error_explanation">
+    <% @user.errors.messages.each do |msg| %>
+      <%= msg[1].first %>
+    <% end %>
+  </div>
+  <br>
+<% end %>
+
 <%= form_tag ({controller: 'sessions', action: 'login', method: 'post'}) do %>
    <%= label_tag "Username:" %>
    <%= text_field_tag :username %><br />
