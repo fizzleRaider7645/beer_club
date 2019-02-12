@@ -4,7 +4,14 @@
   <%= f.text_field :title, placeholder: "Enter Title" %>
   <%= f.date_field :date %>
   <br>
-  <p><%= f.label 'Write Your Review:' %></p>
+  <h2>Beer</h2>
+  <%= f.fields_for :beers do |b| %>
+    <%= b.label :name %>
+    <%= b.text_field :name %>
+    <%= b.label :country %>
+    <%= b.country_select :country %>
+  <% end %>
+  <p><%= f.label 'Review:' %></p>
   <%= f.text_area :text, size: "42x17" %>
   <br>
   <%= f.submit 'Submit' %>

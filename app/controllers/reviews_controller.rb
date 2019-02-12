@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.find_by(id: params[:id])
+    raise params.inspect
     redirect_to :show
   end
 
