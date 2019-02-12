@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
   get '/', to: 'sessions#home'
   post '/login', to: 'sessions#login'
-  post '/logout' => 'sessions#logout'
+  post '/logout', to: 'sessions#logout'
 
   resources :medals, only: [:index, :show] do
     resources :users, only: [:index]
   end
 
-  resources :beers
+  resources :beers, only: [:index, :show]
 
-  resources :reviews
+  resources :reviews, only: [:index, :show]
 
   resources :users do
-    resources :medals, only: [:index]
+    resources :medals, only: [:index, :show]
     resources :beers
     resources :sessions
     resources :reviews

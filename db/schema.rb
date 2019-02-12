@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_191303) do
+ActiveRecord::Schema.define(version: 2019_02_12_164815) do
 
   create_table "beers", force: :cascade do |t|
     t.string "name"
     t.string "country"
     t.integer "IBU"
     t.float "ABV"
-    t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "style"
@@ -45,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_191303) do
     t.integer "user_id"
     t.integer "beer_id"
     t.date "date"
+    t.float "rating"
   end
 
   create_table "users", force: :cascade do |t|
