@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
 
   def create
     raise params.inspect
-    redirect_to :show
+    # redirect_to :show
   end
 
   def show

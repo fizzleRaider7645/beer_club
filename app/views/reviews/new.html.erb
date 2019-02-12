@@ -1,12 +1,13 @@
 <h1>Write a Review</h1>
-
-<%= form_for(@review) do |f| %>
+<%= form_for @review do |f| %>
   <%= f.text_field :title, placeholder: "Enter Title" %>
   <%= f.date_field :date %>
+  <%# <%= f.hidden_field :user_id, :value => current_user.id %> %>
   <br>
   <h2>Beer</h2>
   <ul>
-  <%= f.fields_for :beers do |b| %>
+
+  <%= f.fields_for :beers, @beer = Beer.new do |b| %>
     <li><%= b.label :name %>
     <%= b.text_field :name %></li>
     <li><%= b.label :style %>
@@ -22,5 +23,6 @@
   <p><%= f.label 'Review:' %></p>
   <%= f.text_area :text, size: "42x17" %>
   <br>
+  <%= hidden_field_tag "user_id", current_user.id %>
   <%= f.submit 'Submit' %>
 <% end %>
