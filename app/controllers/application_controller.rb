@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
   skip_before_action :require_login, only: [:home, :login]
+  before_action :is_current_user?
+  skip_before_action :is_current_user?, only: [:index, :show, :home, :login, :logout]
 
   private
 
@@ -14,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   def require_login
     redirect_to '/' unless logged_in?
+  end
+
+  def is_current_user?
+    redirect_to '/' unless params[:user_id].to_i == current_user.id
   end
 
   helper_method :current_user
