@@ -5,12 +5,20 @@
   <%= f.date_field :date %>
   <br>
   <h2>Beer</h2>
+  <ul>
   <%= f.fields_for :beers do |b| %>
-    <%= b.label :name %>
-    <%= b.text_field :name %>
+    <li><%= b.label :name %>
+    <%= b.text_field :name %></li>
+    <li><%= b.label :style %>
+    <%= b.text_field :style %> &nbsp
     <%= b.label :country %>
-    <%= b.country_select :country %>
+    <%= b.country_select :country %></li>
+    <li><%= b.label :ABV, 'ABV' %>
+    <%= b.number_field :ABV, step: :any %></li>
+    <li><%= b.label :IBU, 'IBU' %>
+    <%= b.number_field :IBU, step: :any %></li>
   <% end %>
+  </ul>
   <p><%= f.label 'Review:' %></p>
   <%= f.text_area :text, size: "42x17" %>
   <br>
