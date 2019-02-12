@@ -1,4 +1,9 @@
 <h1>Write a Review</h1>
+
+<% if @review.errors %>
+<%= @review.errors[:name_error].first %>
+<% end %>
+
 <%= form_for @review do |f| %>
   <p><%= f.date_field :date %></p>
   <%= f.text_field :title, placeholder: "Enter Title" %>

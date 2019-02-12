@@ -14,9 +14,14 @@ class ReviewsController < ApplicationController
     else
       @review.build_beer(params.require(:review).require(:beers).permit(:name,
         :style, :country, :ABV, :IBU))
+      if @review.beer.name.blank?
+        @review.errors[:name_error] << "Must Enter a Beer Name to Submit"
+        render :new
+      else
         @review.save
+        redirect_to user_path(current_user)
+      end
     end
-    redirect_to user_path(current_user)
   end
 
   def show
