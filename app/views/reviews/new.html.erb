@@ -1,0 +1,11 @@
+<h1>Write a Review</h1>
+
+<%= form_for(@review) do |f| %>
+  <%= f.text_field :title, placeholder: "Enter Title" %>
+  <%= f.date_field :date %>
+  <br>
+  <p><%= f.label 'Write Your Review:' %></p>
+  <%= f.text_area :text, size: "42x17" %>
+  <br>
+  <%= f.submit 'Submit' %>
+<% end %>
