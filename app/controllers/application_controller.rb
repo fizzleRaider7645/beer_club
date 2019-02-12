@@ -19,7 +19,11 @@ class ApplicationController < ActionController::Base
   end
 
   def is_current_user?
-    redirect_to '/' unless params[:user_id].to_i == current_user.id
+    if current_user.nil?
+      return
+    else
+      redirect_to '/' unless params[:user_id].to_i == current_user.id
+    end
   end
 
   helper_method :current_user

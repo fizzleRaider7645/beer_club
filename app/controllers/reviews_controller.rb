@@ -5,9 +5,18 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.create(review_params)
-    raise params.inspect
-    # redirect_to :show
+    @review = Review.new(review_params)
+    @review.user = current_user
+    @beer = Beer.find_by(name: params[:review][:beers][:name].titleize)
+    if @beer.present?
+      @review.beer = @beer
+      @review.save
+    else
+      @review.build_beer(params.require(:review).require(:beers).permit(:name,
+        :style, :country, :ABV, :IBU))
+        @review.save
+    end
+    redirect_to user_path(current_user)
   end
 
   def show
@@ -20,6 +29,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :date, :text, :beers, :user_id)
+    params.require(:review).permit(:title, :date, :text, :rating, :beers)
   end
 end

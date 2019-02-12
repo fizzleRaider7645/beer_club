@@ -1,7 +1,7 @@
 <h1>Write a Review</h1>
 <%= form_for @review do |f| %>
+  <p><%= f.date_field :date %></p>
   <%= f.text_field :title, placeholder: "Enter Title" %>
-  <%= f.date_field :date %>
   <%= f.number_field :rating, step: :any, min: 0, max:5, placeholder: "Enter Rating" %>
   <br>
   <h2>Beer</h2>
@@ -15,9 +15,9 @@
     <%= b.label :country %>
     <%= b.country_select :country, { include_blank: true } %></li>
     <li><%= b.label :ABV, 'ABV' %>
-    <%= b.number_field :ABV, step: :any, min: 0, max:5 %></li>
+    <%= b.number_field :ABV, step: :any %></li>
     <li><%= b.label :IBU, 'IBU' %>
-    <%= b.number_field :IBU, step: :any, min: 0, max:5 %></li>
+    <%= b.number_field :IBU, step: :any %></li>
   <% end %>
   </ul>
   <p><%= f.label 'Review:' %></p>
