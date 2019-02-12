@@ -2,7 +2,7 @@
 <%= form_for @review do |f| %>
   <%= f.text_field :title, placeholder: "Enter Title" %>
   <%= f.date_field :date %>
-  <%# <%= f.hidden_field :user_id, :value => current_user.id %> %>
+  <%= f.number_field :rating, step: :any, min: 0, max:5, placeholder: "Enter Rating" %>
   <br>
   <h2>Beer</h2>
   <ul>
@@ -13,11 +13,11 @@
     <li><%= b.label :style %>
     <%= b.text_field :style %> &nbsp
     <%= b.label :country %>
-    <%= b.country_select :country %></li>
+    <%= b.country_select :country, { include_blank: true } %></li>
     <li><%= b.label :ABV, 'ABV' %>
-    <%= b.number_field :ABV, step: :any %></li>
+    <%= b.number_field :ABV, step: :any, min: 0, max:5 %></li>
     <li><%= b.label :IBU, 'IBU' %>
-    <%= b.number_field :IBU, step: :any %></li>
+    <%= b.number_field :IBU, step: :any, min: 0, max:5 %></li>
   <% end %>
   </ul>
   <p><%= f.label 'Review:' %></p>

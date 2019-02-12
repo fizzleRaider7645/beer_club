@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @review = Review.create(review_params)
     raise params.inspect
     # redirect_to :show
   end
@@ -14,5 +15,11 @@ class ReviewsController < ApplicationController
 
   def edit
     # raise params.inspect
+  end
+
+  private
+
+  def review_params
+    params.require(:review).permit(:title, :date, :text, :beers, :user_id)
   end
 end
