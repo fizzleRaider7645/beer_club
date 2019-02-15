@@ -1,12 +1,12 @@
-<h1>Write a Review</h1>
-
+<h1>New Review</h1>
 <% if @review.errors %>
 <%= @review.errors[:name_error].first %>
 <% end %>
 
-<%= form_for @review do |f| %>
+<%= form_for @review, :url => {:action => "create"} do |f| %>
 <%= render :partial => "form", :locals=>{:f=>f} %>
-  <%= f.fields_for :beer, @beer = Beer.new do |b| %>
+  <%= f.fields_for :beer, Beer.new do |b| %>
   <%= render :partial => "beers/form", :locals=>{:b=>b} %>
   <% end %>
+  <%= f.submit 'Submit' %>
 <% end %>

@@ -1,8 +1,5 @@
-  <p><%= f.date_field :date %></p>
+  <p><%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d') %></p>
   <%= f.text_field :title, placeholder: "Enter Title" %>
   <%= f.number_field :rating, step: :any, min: 0, max:5, placeholder: "Enter Rating" %>
-  <p><%= f.label 'Review:' %></p>
-  <%= f.text_area :text, size: "42x17" %>
-  <br>
+  <p><%= f.text_area :text, placeholder: "Write Your Review", size: "42x17" %></p>
   <%= hidden_field_tag "user_id", current_user.id %>
-  <%= f.submit 'Submit' %>
