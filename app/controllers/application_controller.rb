@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_current_user?
-    if current_user.nil?
+    if !logged_in?
       return
     else
       redirect_to '/' unless params[:user_id].to_i == current_user.id

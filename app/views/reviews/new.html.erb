@@ -1,34 +1,12 @@
 <h1>Write a Review</h1>
 
-<%= form_for @review do |f| %>
-<%= render :partial => "form", :locals=>{:f=>f} %>
-<% end %>
-
 <% if @review.errors %>
 <%= @review.errors[:name_error].first %>
 <% end %>
 
 <%= form_for @review do |f| %>
-  <p><%= f.date_field :date %></p>
-  <%= f.text_field :title, placeholder: "Enter Title" %>
-  <%= f.number_field :rating, step: :any, min: 0, max:5, placeholder: "Enter Rating" %>
-
-  <br>
-
-  <h2>Beer</h2>
+<%= render :partial => "form", :locals=>{:f=>f} %>
   <%= f.fields_for :beer, @beer = Beer.new do |b| %>
-    <p><%= b.label :name %>
-    <%= b.text_field :name %></p>
-    <p><%= b.label :style %>
-    <%= b.text_field :style %> &nbsp
-    <%= b.label :country %>
-    <%= b.country_select :country, { include_blank: true } %></p>
-    <p><%= b.label :abv, 'ABV' %>
-    <%= b.number_field :abv, step: :any %></p>
+  <%= render :partial => "beers/form", :locals=>{:b=>b} %>
   <% end %>
-  <p><%= f.label 'Review:' %></p>
-  <%= f.text_area :text, size: "42x17" %>
-  <br>
-  <%= hidden_field_tag "user_id", current_user.id %>
-  <%= f.submit 'Submit' %>
 <% end %>

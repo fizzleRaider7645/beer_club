@@ -1,8 +1,8 @@
-  
   <p><%= f.date_field :date %></p>
   <%= f.text_field :title, placeholder: "Enter Title" %>
   <%= f.number_field :rating, step: :any, min: 0, max:5, placeholder: "Enter Rating" %>
   <p><%= f.label 'Review:' %></p>
   <%= f.text_area :text, size: "42x17" %>
   <br>
+  <%= hidden_field_tag "user_id", current_user.id %>
   <%= f.submit 'Submit' %>

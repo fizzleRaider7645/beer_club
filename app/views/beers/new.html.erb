@@ -1,0 +1,5 @@
+<h1>Add a Beer</h1>
+
+<%= form_for @beer do |b| %>
+  <%= render :partial => "beers/form", :locals=>{:b=>b} %>
+<% end %>

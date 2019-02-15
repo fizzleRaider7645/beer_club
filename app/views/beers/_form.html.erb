@@ -1,0 +1,12 @@
+  <p><%= b.label :name %>
+  <%= b.text_field :name %></p>
+  <p><%= b.label :style %>
+  <%= b.text_field :style %></p>
+  <p><%= b.label :brewery %>
+  <%= b.text_field :brewery %>
+  <%= b.label :country %>
+  <%= b.country_select :country, { include_blank: true } %></p>
+  <p><%= b.label :abv, 'ABV' %>
+  <%= b.number_field :abv, step: :any %></p>
+  <%= hidden_field_tag "user_id", current_user.id %>
+  <%= b.submit 'Submit' %>
