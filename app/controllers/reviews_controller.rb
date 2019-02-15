@@ -20,12 +20,19 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find_by(id: params[:id])
+  end
+
+  def update
+    @review = Review.find_by(id: params[:id])
+    @review.update(review_params)
+    redirect_to user_path(current_user)
   end
 
   private
 
   def review_params
     params.require(:review).permit(:title, :date, :text, :rating, beer_attributes: [:name,
-      :country, :style, :brewery, :abv])
+      :country, :style, :brewery, :abv, :id])
   end
 end

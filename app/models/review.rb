@@ -6,9 +6,13 @@ class Review < ApplicationRecord
 
 
   def beer_attributes=(beer_attributes)
-    beer = Beer.find_by(name: beer_attributes[:name])
-    beer ||= beer = Beer.create(beer_attributes)
-    self.beer = beer
+    if beer_attributes.include?(:id)
+      beer = Beer.find_by(id: beer_attributes[:id])
+      beer.update(beer_attributes)
+    else
+      beer = Beer.create(beer_attributes.delete(:id))
+      self.beer = beer
+    end
   end
 
 end
