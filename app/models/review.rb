@@ -5,7 +5,7 @@ class Review < ApplicationRecord
   accepts_nested_attributes_for :beer
 
 
-  def beers=(beer_attributes)
+  def beer_attributes=(beer_attributes)
     beer = Beer.find_by(name: beer_attributes[:name])
     beer ||= beer = Beer.create(beer_attributes)
     self.beer = beer
