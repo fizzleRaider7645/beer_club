@@ -1,4 +1,4 @@
-<h1><%= current_user.username %>'s Reviews</h1>
+<h1><%= current_user.username %> Reviews</h1>
 <ul>
 <% @reviews.sort_by { |review| review.date }.reverse.each do |review| %>
   <li><%= review.date.strftime('%B %e, %Y') %> - <%= link_to "#{review.title}",

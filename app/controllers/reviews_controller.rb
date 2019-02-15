@@ -1,7 +1,12 @@
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
+    if params.include?(:user_id)
+      user = User.find_by(id: params[:user_id])
+      @reviews = user.reviews
+    else
+      @reviews = Review.all
+    end
   end
 
   def new

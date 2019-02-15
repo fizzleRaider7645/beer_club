@@ -6,22 +6,25 @@ class Review < ApplicationRecord
 
 
   def beer_attributes=(beer_attributes)
-    if beer_attributes.include?(:id)
-      beer = Beer.find_by(id: beer_attributes[:id])
-      beer.update(beer_attributes)
-      return
-    end
-
+    update_by_id if beer_attributes.include?(:id)
     beer = Beer.find_by(name: beer_attributes[:name])
-
-    if beer
-      beer.update(beer_attributes)
-      return
-    end
-    beer_attributes.delete(:id)
+    update_by_name(beer, beer_attributes) if beer
     beer = Beer.create(beer_attributes)
     self.beer = beer
   end
 
   private
+
+  def update_by_id(beer_attributes)
+    beer = Beer.find_by(id: beer_attributes[:id])
+    beer.update(beer_attributes)
+    self.beer = beer
+    return
+  end
+
+  def update_by_name(beer, beer_attributes)
+    beer.update(beer_attributes)
+    self.beer = beer
+    return
+  end
 end
