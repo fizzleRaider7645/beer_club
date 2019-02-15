@@ -1,5 +1,9 @@
 <h1>Write a Review</h1>
 
+<%= form_for @review do |f| %>
+<%= render :partial => "form", :locals=>{:f=>f} %>
+<% end %>
+
 <% if @review.errors %>
 <%= @review.errors[:name_error].first %>
 <% end %>
@@ -8,23 +12,20 @@
   <p><%= f.date_field :date %></p>
   <%= f.text_field :title, placeholder: "Enter Title" %>
   <%= f.number_field :rating, step: :any, min: 0, max:5, placeholder: "Enter Rating" %>
-  <br>
-  <h2>Beer</h2>
-  <ul>
 
+  <br>
+
+  <h2>Beer</h2>
   <%= f.fields_for :beer, @beer = Beer.new do |b| %>
-    <li><%= b.label :name %>
-    <%= b.text_field :name %></li>
-    <li><%= b.label :style %>
+    <p><%= b.label :name %>
+    <%= b.text_field :name %></p>
+    <p><%= b.label :style %>
     <%= b.text_field :style %> &nbsp
     <%= b.label :country %>
-    <%= b.country_select :country, { include_blank: true } %></li>
-    <li><%= b.label :ABV, 'ABV' %>
-    <%= b.number_field :ABV, step: :any %></li>
-    <li><%= b.label :IBU, 'IBU' %>
-    <%= b.number_field :IBU, step: :any %></li>
+    <%= b.country_select :country, { include_blank: true } %></p>
+    <p><%= b.label :abv, 'ABV' %>
+    <%= b.number_field :abv, step: :any %></p>
   <% end %>
-  </ul>
   <p><%= f.label 'Review:' %></p>
   <%= f.text_area :text, size: "42x17" %>
   <br>

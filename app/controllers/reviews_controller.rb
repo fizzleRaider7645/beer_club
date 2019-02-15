@@ -20,7 +20,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :date, :text, :rating, beer_attributes: [:name,
-      :style, :country, :ABV, :IBU])
+    params.require(:review).permit(:title, :date, :text, :rating, beer_attributes: [:name])
   end
 end
