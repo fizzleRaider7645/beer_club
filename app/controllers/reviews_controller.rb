@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find_by(id: params[:id])
   end
 
   def edit

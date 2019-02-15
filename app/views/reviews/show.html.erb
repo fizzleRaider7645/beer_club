@@ -1,0 +1,15 @@
+<h1><%= @review.title %></h1>
+<p><h2><%= @review.beer.name %>, by <%= @review.beer.brewery %></h2></p>
+<p><h3>Details: </h3></p>
+<ul>
+  <li>Style: <%= @review.beer.style %></li>
+  <li>Country: <%= @review.beer.country %></li>
+  <li>ABV: <%= @review.beer.abv %></li>
+</ul>
+<p><h3>Entry: </h3></p>
+<em><%= @review.text %></em>
+
+<p><%= button_tag(:type => 'button') do %>
+  <% link_to "Edit Review", edit_user_review_path(@review.user, @review),
+  { :class=>"button_link" } %>
+<% end %></p>
