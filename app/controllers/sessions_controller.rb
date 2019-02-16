@@ -5,16 +5,10 @@ class SessionsController < ApplicationController
   end
 
   def login
-    if request.env["omniauth.auth"]
-      oauth_username = request.env["omniauth.auth"][:info][:nickname]
-      if @user = User.find_by(username: oauth_username)
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
-      else
-        @user = User.create(username: oauth_username, password: SecureRandom.hex)
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
-      end
+    if auth_hash = request.env["omniauth.auth"]
+      @user = User.find_or_create_by_omniauth(auth_hash)
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
     else
       @user = User.find_by(username: params[:username])
       if @user.present? && @user.authenticate(params[:password])
