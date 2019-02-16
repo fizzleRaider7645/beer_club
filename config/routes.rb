@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/', to: 'sessions#home'
+  get '/auth/github/callback' => 'sessions#login'
   post '/login', to: 'sessions#login'
   post '/logout', to: 'sessions#logout'
 

@@ -24,7 +24,9 @@
    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
    <%= submit_tag "Login" %>
 <% end %>
-<br />
+<%= button_tag(:type => 'button') do %>
+<%= link_to('Log in with GitHub', '/auth/github') %><br />
+<% end %><br />
 <%= button_tag(:type => 'button') do %>
   <% link_to "Create an Account", new_user_path, { :class=>"button_link" } %>
 <% end %>
