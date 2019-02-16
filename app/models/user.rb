@@ -14,6 +14,7 @@ class User < ApplicationRecord
     award_here_gose_nothing_medal?
   end
 
+
   private
 
   def award_rookie_medal?

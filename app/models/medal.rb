@@ -5,7 +5,8 @@ class Medal < ApplicationRecord
 
   def self.award_medal(user, medal)
     user.medals << @@medals[medal] unless user.medals.include?(@@medals[medal])
-    self.status = user.medals.map { |medal| medal.points }.reduce(:+)
+    user.status = user.medals.map { |medal| medal.points }.reduce(:+)
+    user.save
   end
 
 end
