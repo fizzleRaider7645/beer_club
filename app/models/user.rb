@@ -6,6 +6,15 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
 
+  def medal_check
+    award_rookie_medal?
+    award_well_traveled_medal?
+    award_connoisseur_medal?
+    award_here_gose_nothing_medal?
+  end
+
+  private
+
   def award_rookie_medal?
     if self.beers.count >= 1
       Medal.award_medal(self, 0)
@@ -30,13 +39,6 @@ class User < ApplicationRecord
     end
   end
 
-  def award_hop_head_medal?
-    if self.beers.any? { |beer| beer.IBU > 60 }
-      Medal.award_medal(self, 3)
-    else
-      return
-    end
-  end
 
   def award_here_gose_nothing_medal?
     if self.beers.count { |beer| beer.style == "Gose" } >= 5

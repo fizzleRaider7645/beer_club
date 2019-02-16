@@ -1,2 +1,8 @@
 <h1><%= @beer.name %></h1>
+<ul>
+  <li>Brewed By: <%= @beer.brewery %></li>
+  <li>Style: <%= @beer.style %></li>
+  <li>Country: <%= @beer.country %></li>
+  <li>ABV: <%= @beer.abv %></li>
+</ul>
 <%= link_to "#{@beer.name} Reviews", beer_reviews_path(@beer) %>

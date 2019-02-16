@@ -4,7 +4,7 @@
 <% end %>
 <ul>
 <% @reviews.sort_by { |review| review.date }.reverse.each do |review| %>
-  <li><%= review.beer.id %><%= review.date.strftime('%B %e, %Y') %> - <%= link_to "#{review.title}",
+  <li><%= review.date.strftime('%B %e, %Y') %> - <%= link_to "#{review.title}",
     user_review_path(review.user, review) %></li>
 <% end %>
 </ul>
