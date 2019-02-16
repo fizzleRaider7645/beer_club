@@ -1,7 +1,10 @@
-<h1><%= current_user.username %> Reviews</h1>
+<h1>Reviews</h1>
+<% if @reviews.empty? %>
+<h2>No Reviews</h2>
+<% end %>
 <ul>
 <% @reviews.sort_by { |review| review.date }.reverse.each do |review| %>
-  <li><%= review.date.strftime('%B %e, %Y') %> - <%= link_to "#{review.title}",
+  <li><%= review.beer.id %><%= review.date.strftime('%B %e, %Y') %> - <%= link_to "#{review.title}",
     user_review_path(review.user, review) %></li>
 <% end %>
 </ul>

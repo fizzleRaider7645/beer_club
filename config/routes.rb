@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
 
-  resources :beers, only: [:index, :show]
+  resources :beers do
+    resources :reviews, only: [:index]
+  end
 
   resources :reviews, only: [:index, :show]
 
