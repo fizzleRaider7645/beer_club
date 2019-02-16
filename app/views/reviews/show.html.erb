@@ -13,3 +13,10 @@
   <% link_to "Edit Review", edit_user_review_path(@review.user, @review),
   { :class=>"button_link" } %>
 <% end %></p>
+
+<p><%= button_tag(:type => 'button') do %>
+<%= link_to 'Delete Review',
+                         user_review_path(@review.user, @review),
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' } %>
+<% end %></p>
