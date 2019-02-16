@@ -59,8 +59,6 @@ class ReviewsController < ApplicationController
     @reviews = Review.all
   end
 
-  private
-
   def medal_check
     user = @review.user
     user.medal_check

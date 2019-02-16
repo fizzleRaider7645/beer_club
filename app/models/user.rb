@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def award_boozy_medal?
-    if self.beers.any? { |beer| beer.abv > 12 }
+    if self.beers.any? { |beer| beer.abv > 12  }
       Medal.award_medal(self, 2)
     else
       return
