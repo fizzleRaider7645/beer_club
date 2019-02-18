@@ -67,12 +67,4 @@ class ReviewsController < ApplicationController
     user = @review.user
     user.medal_check
   end
-
-  private
-
-  def beer_name_check
-    if @review.beer.errors.any?
-      render :new
-    end
-  end
 end

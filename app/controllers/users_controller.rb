@@ -20,9 +20,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(params[:id])
-    destroy_reviews(@user)
-    @user.destroy
+    user = User.find_by(params[:id])
+    destroy_reviews(user)
+    user.destroy
     session.destroy
     redirect_to '/'
   end
