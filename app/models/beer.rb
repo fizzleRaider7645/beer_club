@@ -6,7 +6,8 @@ class Beer < ApplicationRecord
 
 
   def rating
-    reviews = Review.all.select { |review| review.beer.name == self.name }
+    return "Not Yet Reviewed" if self.reviews.count == 0
+    reviews = self.reviews
     ratings = reviews.map { |review| review.rating }
     sum = ratings.reduce(:+)
     sum / reviews.count

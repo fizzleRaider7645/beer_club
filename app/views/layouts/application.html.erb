@@ -11,5 +11,8 @@
 
   <body>
     <%= yield %>
+    <footer>
+      <%= render :partial => "application/footer" unless on_user_homepage? %>
+    </footer>
   </body>
 </html>
