@@ -1,16 +1,13 @@
 <h1>Hello, <%= @user.username %></h1>
-<h3>Status <%= @user.status %></h3>
+<h3>Status Points: <%= @user.status %></h3>
 
 <h2><%= link_to "Write a New Review", new_user_review_path(@user) %></h2>
 
+<h2><%= link_to "Community Reviews", reviews_path %></h2>
 
-<h2><%= link_to "Community", reviews_path %></h2>
-
-<!-- This is where you will see your reviews/wrtie your reviews -->
 <h2><%= link_to "See Your Reviews", user_reviews_path(@user) %></h2>
 
-
-<h2><%= link_to "See Medals", user_medals_path(@user) %></h2>
+<h2><%= link_to "See Your Medals", user_medals_path(@user) %></h2>
 
 <h2><%= link_to "Beers", beers_path %></h2>
 

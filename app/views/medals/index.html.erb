@@ -1,9 +1,4 @@
-
-<% if params.include? :user_id %>
-<h1>Your Medals, <%= current_user.username %></h1>
-<% else %>
-<h1>Medals</h1>
-<% end %>
+<h1><%= index_title %></h1>
 <ul>
 <% @medals.each do |medal| %>
 <li><h3><%= medal.name %></h3>
@@ -12,3 +7,8 @@
 </li>
 <% end %>
 </ul>
+<% if params.include? :user_id %>
+<%= button_tag(:type => 'button') do %>
+<%= link_to('See All Medals', '/medals') %><br />
+<% end %>
+<% end %>
