@@ -12,11 +12,11 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    if @review.beer.errors.any?
+    @review.user = current_user
+    @review.save
+    if @review.errors.any?
       render :new
     else
-      @review.user = current_user
-      @review.save
       medal_check
       redirect_to user_path(current_user)
     end

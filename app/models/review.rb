@@ -1,7 +1,8 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :beer
-  validates :rating, :inclusion => { :in => 0..5 }
+  validates :rating, presence: true, :inclusion => { :in => 0..5 }
+  validates :title, presence: true
   accepts_nested_attributes_for :beer
 
 
