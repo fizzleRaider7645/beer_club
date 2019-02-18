@@ -1,8 +1,4 @@
 <h1>New Review</h1>
-<% if @review.beer && @review.beer.errors %>
-<%= @review.beer.errors.full_messages.first.upcase %>
-<% end %>
-
 <%= form_for @review, :url => {:action => "create"} do |f| %>
 <%= render :partial => "form", :locals=>{:f=>f} %>
   <%= f.fields_for :beer, Beer.new do |b| %>

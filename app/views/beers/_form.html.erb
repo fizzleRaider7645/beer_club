@@ -1,4 +1,5 @@
 <h2>Beer Details:</h2>
+<em><p><%= no_beer_name_error if no_beer_name_error %></p></em>
 <ul>
   <li><p><%= b.label :name %>
   <%= b.text_field :name %></p></li>

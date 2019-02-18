@@ -1,3 +1,14 @@
-<% @medals.each do |medal| %>
-<p><%= medal.name %></p>
+
+<% if params.include? :user_id %>
+<h1>Your Medals, <%= current_user.username %></h1>
+<% else %>
+<h1>Medals</h1>
 <% end %>
+<ul>
+<% @medals.each do |medal| %>
+<li><h3><%= medal.name %></h3>
+  <p><b>Description:</b> <em><%= medal.description %></em></p>
+  <p><b>Points:</b> <%= medal.points %></p>
+</li>
+<% end %>
+</ul>
