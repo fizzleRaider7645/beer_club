@@ -19,9 +19,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find_by(params[:id])
+    destroy_reviews(@user)
+    @user.destroy
+    session.destroy
+    redirect_to '/'
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:username, :password)
+  end
+
+  def destroy_reviews(user)
+      user.reviews.each do |review|
+      review = Review.find_by(id: review.id)
+      review.destroy
+    end
   end
 end

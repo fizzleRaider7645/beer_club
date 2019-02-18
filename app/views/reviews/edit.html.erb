@@ -1,6 +1,6 @@
 <%= form_for @review, :url => {:action => "update"} do |f| %>
 <%= render :partial => "form", :locals=>{:f=>f} %>
-  <%= f.fields_for :beer, @review.beer do |b| %>
+  <%= f.fields_for :beer, review_beer do |b| %>
   <%= render :partial => "beers/form", :locals=>{:b=>b} %>
   <% end %>
   <%= f.submit 'Submit' %>

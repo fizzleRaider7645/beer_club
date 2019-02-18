@@ -19,11 +19,19 @@ class ApplicationController < ActionController::Base
   end
 
   def is_current_user?
-    if !logged_in?
-      return
-    else
+    return if !logged_in?
+    return if user_account_delete(params)
+    # if !logged_in?
+      # return
+    # else
       redirect_to '/' unless params[:user_id].to_i == current_user.id
-    end
+    # end
+  end
+
+  def user_account_delete(params)
+    params[:controller] == "users" &&
+    params[:action] == "destroy" &&
+    params[:id].to_i == current_user.id
   end
 
   helper_method :current_user

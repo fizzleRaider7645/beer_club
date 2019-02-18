@@ -1,14 +1,18 @@
 <h1><%= index_title %></h1>
+<% if @medals.empty? %>
+  <h2>No Medals</h2>
+<% end %>
+
 <ul>
 <% @medals.each do |medal| %>
-<li><h3><%= medal.name %></h3>
-  <p><b>Description:</b> <em><%= medal.description %></em></p>
-  <p><b>Points:</b> <%= medal.points %></p>
-</li>
-<% end %>
+  <li><h3><%= medal.name %></h3>
+    <p><b>Description:</b> <em><%= medal.description %></em></p>
+    <p><b>Points:</b> <%= medal.points %></p>
+  </li>
+  <% end %>
 </ul>
 <% if params.include? :user_id %>
-<%= button_tag(:type => 'button') do %>
-<%= link_to('See All Medals', '/medals') %><br />
-<% end %>
+  <%= button_tag(:type => 'button') do %>
+  <%= link_to('See All Medals', '/medals') %><br />
+  <% end %>
 <% end %>
