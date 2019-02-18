@@ -12,7 +12,8 @@
   <body>
     <%= yield %>
     <footer>
-      <%= render :partial => "application/footer" unless on_user_homepage? %>
+      <br>
+      <%= render :partial => "application/footer" unless on_user_homepage? || logged_out? %>
     </footer>
   </body>
 </html>

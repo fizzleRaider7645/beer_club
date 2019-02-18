@@ -5,4 +5,6 @@
   <li>Country: <%= @beer.country %></li>
   <li>ABV: <%= @beer.abv %></li>
 </ul>
-<%= link_to "#{@beer.name} Reviews", beer_reviews_path(@beer) %>
+<%= button_tag(:type => 'button') do %>
+  <%= link_to "Reviews", beer_reviews_path(@beer) %>
+<% end %>

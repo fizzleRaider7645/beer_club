@@ -16,17 +16,17 @@
   <br>
 <% end %>
 
-<%= form_tag ({controller: 'sessions', action: 'login', method: 'post'}) do %>
+<p><%= form_tag ({controller: 'sessions', action: 'login', method: 'post'}) do %>
    <%= label_tag "Username:" %>
    <%= text_field_tag :username %><br />
    <%= label_tag "Password:" %>
    <%= password_field_tag :password %><br />
    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
    <%= submit_tag "Login" %>
-<% end %>
-<%= button_tag(:type => 'button') do %>
-<%= link_to('Log in with GitHub', '/auth/github') %><br />
-<% end %><br />
-<%= button_tag(:type => 'button') do %>
+<% end %></p>
+<p><%= button_tag(:type => 'button') do %>
+<%= link_to('Log in with GitHub', '/auth/github') %>
+<% end %></p>
+<p><%= button_tag(:type => 'button') do %>
   <% link_to "Create an Account", new_user_path, { :class=>"button_link" } %>
-<% end %>
+<% end %></p>

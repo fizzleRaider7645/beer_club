@@ -11,4 +11,16 @@ module ReviewsHelper
       @beer = Beer.new
     end
   end
+
+  def no_reviews
+    "No Reviews "if @reviews.empty?
+  end
+
+  def review_title
+    if !params.include?(:user_id)
+      "Community Reviews"
+    else
+      "Reviews"
+    end
+  end
 end
