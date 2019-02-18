@@ -15,14 +15,10 @@ class User < ApplicationRecord
   end
 
   def self.find_or_create_by_omniauth(auth_hash)
-    self.where(:username => auth_hash[:info][:nickname]).first_or_create do |user|
+    self.where(username: auth_hash[:info][:nickname]).first_or_create do |user|
       user.password = SecureRandom.hex
     end
   end
-
-  def self.standard_login
-  end
-
 
   private
 
@@ -43,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def award_boozy_medal?
-    if self.beers.any? { |beer| beer.abv > 12  }
+    if self.beers.any? { |beer| beer.abv > 12 }
       Medal.award_medal(self, 2)
     else
       return

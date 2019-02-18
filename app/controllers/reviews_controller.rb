@@ -12,10 +12,14 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.user = current_user
-    @review.save
-    medal_check
-    redirect_to user_path(current_user)
+    if @review.beer.errors.any?
+      render :new
+    else
+      @review.user = current_user
+      @review.save
+      medal_check
+      redirect_to user_path(current_user)
+    end
   end
 
   def show
@@ -62,5 +66,13 @@ class ReviewsController < ApplicationController
   def medal_check
     user = @review.user
     user.medal_check
+  end
+
+  private
+
+  def beer_name_check
+    if @review.beer.errors.any?
+      render :new
+    end
   end
 end

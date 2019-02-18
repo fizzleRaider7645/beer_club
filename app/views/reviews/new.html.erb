@@ -1,6 +1,6 @@
 <h1>New Review</h1>
-<% if @review.errors %>
-<%= @review.errors[:name_error].first %>
+<% if @review.beer && @review.beer.errors %>
+<%= @review.beer.errors.full_messages.first.upcase %>
 <% end %>
 
 <%= form_for @review, :url => {:action => "create"} do |f| %>

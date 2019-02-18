@@ -6,8 +6,12 @@ ruby '2.3.4'
 # Gems I've added
 gem 'country_select', '~> 4.0'
 gem 'omniauth'
+gem 'omniauth-openid'
 gem 'omniauth-github'
+gem 'omniauth-facebook'
 gem 'dotenv-rails'
+gem 'bootstrap'
+gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use sqlite3 as the database for Active Record
