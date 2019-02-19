@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#login'
   post '/logout', to: 'sessions#logout'
 
-  resources :medals, only: [:index, :show] do
+  resources :medals, only: [:index] do
     resources :users, only: [:index]
   end
 
-  resources :beers do
+  resources :beers, only: [:index, :show] do
     resources :reviews, only: [:index]
   end
 

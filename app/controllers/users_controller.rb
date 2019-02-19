@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :is_current_user?, only: [:new, :create]
 
   def show
     @user = User.find_by(id: params[:id])

@@ -1,4 +1,5 @@
 <h1><%= @review.title %></h1>
+<h4>&nbsp<%= @review.date.strftime('%B %e, %Y') %></h4>
 <p><h2><%= @review.beer.name %>, by <%= @review.beer.brewery %></h2></p>
 <p>&nbsp-<%= link_to @review.user.username, user_reviews_path(@review.user) %></p>
 <p><h3>Details: </h3></p>

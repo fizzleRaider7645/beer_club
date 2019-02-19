@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def do_not_render
+    on_user_homepage? || logging_in? || logging_out? || on_create_new_user?
+  end
+
   def on_user_homepage?
     params["controller"] == "users" && params["action"] == "show"
   end
@@ -7,11 +12,11 @@ module ApplicationHelper
     params["controller"] == "sessions" && params["action"] == "login"
   end
 
-  def logged_out?
+  def logging_out?
     params["controller"] == "sessions" && params["action"] == "home"
   end
 
-  def do_not_render
-    on_user_homepage? || logging_in? || logged_out?
+  def on_create_new_user?
+    params["controller"] == "users" && params["action"] == "new"
   end
 end

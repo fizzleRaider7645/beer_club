@@ -3,6 +3,6 @@
 <ul>
 <% @reviews.sort_by { |review| review.date }.reverse.each do |review| %>
   <li><%= review.date.strftime('%B %e, %Y') %> - <%= link_to "#{review.title}",
-    user_review_path(review.user, review) %></li>
+    user_review_path(review.user, review) %> - <%= link_to review.user.username, user_reviews_path(review.user) %></li>
 <% end %>
 </ul>
