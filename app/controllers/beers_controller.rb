@@ -1,4 +1,5 @@
 class BeersController < ApplicationController
+  skip_before_action :is_current_user?, only: [:index, :show]
 
   def index
     @beers = Beer.all
