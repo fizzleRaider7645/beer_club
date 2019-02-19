@@ -19,20 +19,12 @@ class ApplicationController < ActionController::Base
   end
 
   def is_current_user?
-    return if user_account_delete_action(params)
-    id = params[:user_id].to_i if params[:user_id]
-    id ||= params[:id].to_i if user_show_page_action
+    if params[:controller] == "users"
+      id = params[:id].to_i
+    else
+      id = params[:user_id].to_i
+    end
     redirect_to '/' unless id == current_user.id
-  end
-
-  def user_account_delete_action(params)
-    params[:controller] == "users" &&
-    params[:action] == "destroy" &&
-    params[:id].to_i == current_user.id
-  end
-
-  def user_show_page_action
-    params["controller"] == "users" && params["action"] == "show"
   end
 
   helper_method :current_user
