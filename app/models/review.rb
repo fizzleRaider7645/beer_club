@@ -22,6 +22,5 @@ class Review < ApplicationRecord
     beer = Beer.find_by(id: beer_attributes[:id])
     beer.update(beer_attributes)
     self.beer = beer
-    return
   end
 end

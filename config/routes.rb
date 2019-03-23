@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :beers, only: [:index, :show] do
-    resources :reviews, only: [:index]
+    resources :reviews, only: [:index, :create, :new]
   end
 
   resources :reviews, only: [:index, :show]

@@ -6,5 +6,9 @@
   <li>ABV: <%= @beer.abv %></li>
 </ul>
 <%= button_tag(:type => 'button') do %>
-  <%= link_to "Reviews", beer_reviews_path(@beer) %>
+  <%= link_to "#{@beer.name} Reviews", beer_reviews_path(@beer) %>
+<% end %>
+
+<%= button_tag(:type => 'button') do %>
+  <%= link_to "Write a new Review", new_beer_review_path(@beer) %>
 <% end %>

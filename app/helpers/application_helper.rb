@@ -1,7 +1,8 @@
 module ApplicationHelper
 
   def do_not_render
-    on_user_homepage? || logging_in? || logging_out? || on_create_new_user?
+    # on_user_homepage? || logging_in? || logging_out? || on_create_new_user?
+    !current_user
   end
 
   def on_user_homepage?

@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  skip_before_action :is_current_user?, only: [:index, :show]
+  skip_before_action :is_current_user?, only: [:index, :show, :new, :create]
 
   def index
     user_index if params.include?(:user_id)
@@ -8,7 +8,12 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = Review.new
+    @beer = Beer.find_by(id:params[:beer_id])
+    if @beer.present?
+      @review = @beer.reviews.build
+    else
+      @review = Review.new
+    end
   end
 
   def create
