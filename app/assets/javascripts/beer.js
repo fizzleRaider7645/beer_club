@@ -3,9 +3,5 @@ $(document).on('turbolinks:load', function() {
 });
 
 function attachListeners() {
-  $('#medal-chest').on('click', function() {
-    alert('Clicking')
-  });
-
   // $('#save').on('click', () => saveGame());
 }

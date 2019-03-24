@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  # skip_before_action :is_current_user?, only: [:index, :show, :new, :create]
+  skip_before_action :is_current_user?, only: [:index, :show, :new, :create]
 
   def index
     user_index if params.include?(:user_id)
@@ -63,6 +63,11 @@ class ReviewsController < ApplicationController
   def beer_index
     beer = Beer.find_by(id: params[:beer_id])
     @reviews = beer.reviews
+    render json: @reviews
+    # respond_to do |f|
+    #   f.html
+    #   f.json { render json: @reviews}
+    # end
   end
 
   def general_index
