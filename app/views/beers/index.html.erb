@@ -1,7 +1,7 @@
 <h1>Beers Reviwed on BeerClub</h1>
 <ul>
 <% @beers.each do |beer| %>
-  <li><%= link_to beer.name, beer_path(beer) %> - Rating: <%= beer.rating %></li>
+  <li><%= link_to beer.name, beer_path(beer) %> - Rating: <%= beer.rating %> - <a href="#" class="see-review">See Reviews</a></li>
   <br>
 <% end %>
 </ul>
