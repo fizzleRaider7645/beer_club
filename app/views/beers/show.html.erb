@@ -5,10 +5,14 @@
   <li>Country: <%= @beer.country %></li>
   <li>ABV: <%= @beer.abv %></li>
 </ul>
-<%= button_tag(:type => 'button') do %>
-  <%= link_to "#{@beer.name} Reviews", beer_reviews_path(@beer) %>
+<%= button_tag(:name =>"Reviews",:type => 'button') do %>
+  <%= link_to "#{@beer.name} Reviews", beer_reviews_path(@beer), id: "#{@beer.id}", class: "beer-show-page-reviews"%>
 <% end %>
 
 <%= button_tag(:type => 'button') do %>
   <%= link_to "Write a new Review", new_beer_review_path(@beer) %>
 <% end %>
+
+<ol id="beer-review-box">
+
+</ol>
