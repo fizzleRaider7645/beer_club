@@ -1,6 +1,8 @@
 <h1>Hello, <%= @user.username %></h1>
 <h3>Beer Cred: <%= @user.status %></h3>
 
+<button id="medal-chest" type="button" name="button">Medal Chest</button>
+
 <h2><%= link_to "Write a New Review", new_user_review_path(@user) %></h2>
 
 <h2><%= link_to "Community Reviews", reviews_path %></h2>
