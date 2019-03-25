@@ -5,7 +5,11 @@
 
 <h2><%= link_to "Community Reviews", reviews_path %></h2>
 
-<h2><%= link_to "See Your Reviews", user_reviews_path(@user) %></h2>
+<h2><%= link_to "See Your Reviews", user_reviews_path(@user), id: "#{@user.id}", class: "user-reviews-link" %> </h2>
+
+<ol class="user-reviews-box">
+
+</ol>
 
 <h2><%= link_to "See Your Medals", user_medals_path(@user) %></h2>
 
