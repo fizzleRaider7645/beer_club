@@ -22,11 +22,16 @@ function getUserReviews(id) {
       alert("You Have Not Written Any Reviews Yet!")
     } else {
       json.data.forEach(function(reviewObj) {
-        $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.attributes.date + " <button class='see-review-button'>See Review</button>" + "</li> <br />")
+        $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + " <button onClick=" + `seeReview(${reviewObj.id})` + ">See Review</button>" + "</li> <br />")
       });
     }
     $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
   });
+}
+
+function seeReview(id) {
+  // $('.user-reviews-box').empty();
+  debugger
 }
 
 
@@ -53,7 +58,8 @@ function attachListeners() {
     $('.user-reviews-box').empty();
   });
 
-  $('.user-reviews-box').on('click', '.see-review-button', function(e) {
-    alert("Click")
-  });
+  // $('.user-reviews-box').on('click', '.see-review-button', function(e) {
+  //   // $('.user-reviews-box').empty();
+  //   debugger
+  // });
 }
