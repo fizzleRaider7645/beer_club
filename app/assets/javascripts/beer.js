@@ -16,7 +16,8 @@ function getBeerReviews(id) {
 }
 
 function getUserReviews(id) {
-  $.get(`/users/${id}/reviews`, function(json) {
+  $.get(`/users/${id}/reviews` + `.json`, function(json) {
+    debugger
     $('.user-reviews-box').empty();
     if(json.data.length == 0) {
       alert("You Have Not Written Any Reviews Yet!")

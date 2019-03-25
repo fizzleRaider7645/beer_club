@@ -58,7 +58,10 @@ class ReviewsController < ApplicationController
   def user_index
     user = User.find_by(id: params[:user_id])
     @reviews = user.reviews
-    render :json => @reviews
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render :json => @reviews}
+    end
   end
 
   def beer_index
