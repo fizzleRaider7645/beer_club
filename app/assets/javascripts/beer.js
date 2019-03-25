@@ -22,10 +22,10 @@ function getUserReviews(id) {
       alert("You Have Not Written Any Reviews Yet!")
     } else {
       json.data.forEach(function(reviewObj) {
-        $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.attributes.text + "</li> <br />")
+        $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.attributes.date + " <button class='see-review-button'>See Review</button>" + "</li> <br />")
       });
     }
-    $('.user-reviews-box').append("<button type='button' class='btn'>Clear Reviews</button>")
+    $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
   });
 }
 
@@ -49,7 +49,11 @@ function attachListeners() {
     getUserReviews(id);
   });
 
-  $('.user-reviews-box').on('click', '.btn', function(e) {
+  $('.user-reviews-box').on('click', '.clear-reviews-button', function(e) {
     $('.user-reviews-box').empty();
+  });
+
+  $('.user-reviews-box').on('click', '.see-review-button', function(e) {
+    alert("Click")
   });
 }
