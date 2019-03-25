@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find_by(id: params[:id])
     respond_to do |format|
-      format.html {render :index}
+      format.html {render :show}
       format.json {render :json => @review}
     end
   end

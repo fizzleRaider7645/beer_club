@@ -31,9 +31,23 @@ function getUserReviews(userId) {
 
 function seeReview(userId, review_id) {
   $.get(`/users/${userId}/reviews/${review_id}` + `.json`, function(json) {
+    let saved = json
     $('.user-reviews-box').empty();
     $('.user-reviews-box').append(`<h2>${json.data.attributes.title}</h2> <p>${json.data.attributes.text}</p> <button onClick=getUserReviews(${json.data.relationships.user.data.id})>Go Back</button>`)
+    $('.user-reviews-box').append(`<button class='edit-review-button'>Edit Review</button>`)
   });
+}
+
+function postNewReview(userId) {
+  let state = {};
+  $.post(`/users/${userId}/reviews`, function(data) {
+    debugger
+  });
+}
+
+function editReview() {
+  debugger
+  // $.get()
 }
 
 
@@ -58,6 +72,15 @@ function attachListeners() {
 
   $('.user-reviews-box').on('click', '.clear-reviews-button', function(e) {
     $('.user-reviews-box').empty();
+  });
+
+  $('.form-submit-button').on('click', function(e) {
+    let userId = document.getElementsByClassName("review-index-box")[0].id
+    e.preventDefault();
+    postNewReview(userId);
+  });
+  $('.user-reviews-box').on('click', '.edit-review-button', function(e) {
+    editReview();
   });
 
   $(document).ready(function(e) {

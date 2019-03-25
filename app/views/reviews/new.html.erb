@@ -7,8 +7,6 @@
   </ol>
 </div>
 
-  <h1>New Review</h1>
-
 <ul>
   <% if review_errors %>
   <% review_errors.each do |msg| %>
@@ -22,5 +20,5 @@
   <%= f.fields_for :beer, review_beer do |b| %>
   <%= render :partial => "beers/form", :locals=>{:b=>b} %>
   <% end %>
-  <%= f.submit 'Submit' %>
+  <%= f.submit 'Submit', class: 'form-submit-button' %>
 <% end %>
