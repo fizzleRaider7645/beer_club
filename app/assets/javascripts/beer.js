@@ -15,23 +15,25 @@ function getBeerReviews(id) {
   });
 }
 
-function getUserReviews(id) {
-  $.get(`/users/${id}/reviews` + `.json`, function(json) {
+function getUserReviews(user_id) {
+  $.get(`/users/${user_id}/reviews` + `.json`, function(json) {
     $('.user-reviews-box').empty();
     if(json.data.length == 0) {
       alert("You Have Not Written Any Reviews Yet!")
     } else {
       json.data.forEach(function(reviewObj) {
-        $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + " <button onClick=" + `seeReview(${reviewObj.id})` + ">See Review</button>" + "</li> <br />")
+        $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + " <button onClick=" + `seeReview(${user_id}` + "," + `${reviewObj.id})` + ">See Review</button>" + "</li> <br />")
       });
     }
     $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
   });
 }
 
-function seeReview(id) {
-  // $('.user-reviews-box').empty();
-  debugger
+function seeReview(user_id, review_id) {
+  $.get(`/users/${user_id}/reviews/${review_id}` + `.json`, function(json) {
+    $('.user-reviews-box').empty();
+    $('.user-reviews-box').append(`<h2>${json.data.attributes.title}</h2> <p>${json.data.attributes.text}</p> <button onClick=getUserReviews(${json.data.relationships.user.data.id})>Go Back</button>`)
+  });
 }
 
 
@@ -57,9 +59,4 @@ function attachListeners() {
   $('.user-reviews-box').on('click', '.clear-reviews-button', function(e) {
     $('.user-reviews-box').empty();
   });
-
-  // $('.user-reviews-box').on('click', '.see-review-button', function(e) {
-  //   // $('.user-reviews-box').empty();
-  //   debugger
-  // });
 }
