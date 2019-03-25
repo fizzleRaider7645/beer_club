@@ -17,7 +17,6 @@ function getBeerReviews(id) {
 
 function getUserReviews(id) {
   $.get(`/users/${id}/reviews` + `.json`, function(json) {
-    debugger
     $('.user-reviews-box').empty();
     if(json.data.length == 0) {
       alert("You Have Not Written Any Reviews Yet!")
@@ -26,6 +25,7 @@ function getUserReviews(id) {
         $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.attributes.text + "</li> <br />")
       });
     }
+    $('.user-reviews-box').append("<button type='button' class='btn'>Clear Reviews</button>")
   });
 }
 
@@ -47,5 +47,9 @@ function attachListeners() {
     let id = this.id
     e.preventDefault();
     getUserReviews(id);
+  });
+
+  $('.user-reviews-box').on('click', '.btn', function(e) {
+    $('.user-reviews-box').empty();
   });
 }
