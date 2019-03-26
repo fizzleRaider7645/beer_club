@@ -18,14 +18,14 @@ function getBeerReviews(id) {
 function getUserReviews(userId) {
   $.get(`/users/${userId}/reviews` + `.json`, function(json) {
     $('.user-reviews-box').empty();
-    if(json.data.length == 0) {
+    if(json.data.length === 0) {
       alert("You Have Not Written Any Reviews Yet!")
     } else {
       json.data.forEach(function(reviewObj) {
         $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + " <button onClick=" + `seeReview(${userId}` + "," + `${reviewObj.id})` + ">See Review</button>" + "</li> <br />")
+        $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
       });
     }
-    $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
   });
 }
 
@@ -51,6 +51,8 @@ function postNewReview(userId) {
 
   $.post(`/users/${userId}/reviews`, state, function(data) {
   }, "json");
+
+  document.getElementById("new_review").reset();
 }
 
 function addLatestReview(userId) {
@@ -91,12 +93,14 @@ function attachListeners() {
     });
   });
 
-  $(document).ready(function(e) {
-    let userId = document.getElementsByClassName("review-index-box")[0].id
-    $.get(`/users/${userId}/reviews` + `.json`, function(json) {
-      json.data.forEach(function(reviewObj) {
-        $('.review-index-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + "</li>")
+  if($("#new_review").length > 0){
+    $(document).ready(function(e) {
+      let userId = document.getElementsByClassName("review-index-box")[0].id
+      $.get(`/users/${userId}/reviews` + `.json`, function(json) {
+        json.data.forEach(function(reviewObj) {
+          $('.review-index-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + "</li>")
+        });
       });
     });
-  });
+  }
 }
