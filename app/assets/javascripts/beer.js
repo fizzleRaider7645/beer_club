@@ -51,6 +51,9 @@ function postNewReview(userId) {
 
   $.post(`/users/${userId}/reviews`, state, function(data) {
   }, "json");
+}
+
+function addLatestReview(userId) {
   $.get(`/users/${userId}/reviews` + `.json`, function(json) {
     let newlyCreatedReview = json.data[json.data.length - 1]
     $('.review-index-box').append("<li>" + "<strong>" + newlyCreatedReview.attributes.title + "</strong>" + "-" + newlyCreatedReview.relationships.beer.data.name + "</li>")
@@ -83,7 +86,9 @@ function attachListeners() {
   $('.form-submit-button').on('click', function(e) {
     let userId = document.getElementsByClassName("review-index-box")[0].id
     e.preventDefault();
-    postNewReview(userId);
+    $.when($.ajax(postNewReview(userId))).then(function () {
+      addLatestReview(userId);
+    });
   });
 
   $(document).ready(function(e) {

@@ -7,14 +7,6 @@
   </ol>
 </div>
 
-<ul>
-  <% if review_errors %>
-  <% review_errors.each do |msg| %>
-    <li><em><%= msg.upcase %></em></li>
-    <% end %>
-  <% end %>
-</ul>
-
 <%= form_for @review, :url => {:action => "create"} do |f| %>
 <%= render :partial => "form", :locals=>{:f=>f} %>
   <%= f.fields_for :beer, review_beer do |b| %>
@@ -22,3 +14,11 @@
   <% end %>
   <%= f.submit 'Submit', class: 'form-submit-button' %>
 <% end %>
+
+<ul>
+  <% if review_errors %>
+  <% review_errors.each do |msg| %>
+    <li><em><%= msg.upcase %></em></li>
+    <% end %>
+  <% end %>
+</ul>
