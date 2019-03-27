@@ -17,13 +17,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @review = Review.new(review_params)
     @review.user = current_user
     @review.save
     if @review.errors.any?
       render :new
     else
-      medal_check
+      # medal_check
       redirect_to user_path(current_user)
     end
   end
@@ -42,8 +43,11 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find_by(id: params[:id])
-    @review.update(review_params)
-    redirect_to user_path(current_user)
+    if @review.update(review_params)
+      redirect_to user_path(current_user)
+    else
+      render :edit
+    end
   end
 
   def destroy

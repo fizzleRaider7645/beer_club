@@ -1,3 +1,7 @@
+<% review_errors.each do |msg| %>
+<li><em><%= msg.upcase %></em></li>
+<% end %>
+
 <%= form_for @review, :url => {:action => "update"} do |f| %>
 <%= render :partial => "form", :locals=>{:f=>f} %>
   <%= f.fields_for :beer, review_beer do |b| %>

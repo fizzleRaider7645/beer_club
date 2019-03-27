@@ -34,11 +34,11 @@ class User < ApplicationRecord
     end
   end
 
-  def award_boozy_medal?
-    if self.beers.any? { |beer| beer.abv > 12 }
-      Medal.award_medal(self, 2)
-    end
-  end
+  # def award_boozy_medal?
+  #   if self.beers.any? { |beer| beer.abv > 12 }
+  #     Medal.award_medal(self, 2)
+  #   end
+  # end
 
   def award_connoisseur_medal?
     if self.beers.map { |beer| beer.style }.uniq.count >= 5

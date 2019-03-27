@@ -20,12 +20,12 @@ function getUserReviews(userId) {
     $('.user-reviews-box').empty();
     if(json.data.length === 0) {
       alert("You Have Not Written Any Reviews Yet!")
-    } else {
-      json.data.forEach(function(reviewObj) {
-        $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + " <button onClick=" + `seeReview(${userId}` + "," + `${reviewObj.id})` + ">See Review</button>" + "</li> <br />")
-        $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
-      });
     }
+
+    json.data.forEach(function(reviewObj) {
+      $('.user-reviews-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + " <button onClick=" + `seeReview(${userId}` + "," + `${reviewObj.id})` + ">See Review</button>" + "</li> <br />")
+    });
+    $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
   });
 }
 
@@ -47,22 +47,35 @@ function postNewReview(userId) {
   let beerBrewery = $('#review_beer_attributes_brewery').val();
   let beerCountry = $('#review_beer_attributes_country').val();
   let beerAbv = $('#review_beer_attributes_abv').val();
-  let state = { review: {title: reviewTitle, date: reviewDate, rating: reviewRating, text: reviewText,beer_attributes: {name: beerName, style: beerStyle, country: beerCountry, abv: beerAbv, brewery: beerBrewery}}}
-
-  $.post(`/users/${userId}/reviews`, state, function(data) {
-  }, "json");
-
-  document.getElementById("new_review").reset();
+  if(beerName){
+    let state = { review: {title: reviewTitle, date: reviewDate, rating: reviewRating, text: reviewText, beer_attributes: {name: beerName, style: beerStyle, country: beerCountry, abv: beerAbv, brewery: beerBrewery}}};
+    let response = $.post(`/users/${userId}/reviews`, state, function(data) {
+    }, "json")
+    console.log(response)
+    // response.done(function(data) {
+    //   debugger;
+    // });
+    addLatestReview(state)
+    document.getElementById("new_review").reset()
+  } else  {
+    alert('Must Input Rating and Beer Name to Submit!')
+  }
+  //
+  // $.post(`/users/${userId}/reviews`, state, function(data) {
+  // }, "json")
+  //
+  // document.getElementById("new_review").reset()
 }
 
-function addLatestReview(userId) {
-  $.get(`/users/${userId}/reviews` + `.json`, function(json) {
-    let newlyCreatedReview = json.data[json.data.length - 1]
-    $('.review-index-box').append("<li>" + "<strong>" + newlyCreatedReview.attributes.title + "</strong>" + "-" + newlyCreatedReview.relationships.beer.data.name + "</li>")
-  });
+function addLatestReview(state) {
+  // $.get(`/users/${userId}/reviews` + `.json`, function(json) {
+  //   let newlyCreatedReview = json.data[json.data.length - 1];
+    $('.review-index-box').append("<li>" + "<strong>" + state.review.title + "</strong>" + "-" + state.review.beer_attributes.name + "</li>")
+  // });
 }
 
 function attachListeners() {
+
   $('.see-review').on('click', function(e) {
     let id = this.id
     e.preventDefault();
@@ -88,9 +101,10 @@ function attachListeners() {
   $('.form-submit-button').on('click', function(e) {
     let userId = document.getElementsByClassName("review-index-box")[0].id
     e.preventDefault();
-    $.when($.ajax(postNewReview(userId))).then(function () {
-      addLatestReview(userId);
-    });
+    postNewReview(userId)
+    // $.when($.ajax(postNewReview(userId))).then(function () {
+    //   addLatestReview(userId);
+    // });
   });
 
   if($("#new_review").length > 0){
