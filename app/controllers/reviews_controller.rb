@@ -17,15 +17,15 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @review = Review.new(review_params)
     @review.user = current_user
     @review.save
     if @review.errors.any?
       render :new
     else
-      # medal_check
-      redirect_to user_path(current_user)
+      medal_check
+      # redirect_to user_path(current_user)
+      render json: @review
     end
   end
 
