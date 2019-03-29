@@ -8,8 +8,9 @@ function Review(title, rating, beerName) {
   this.beerName = beerName
 }
 
-Review.prototype.latestReview = () => {
-  `<li><strong>${this.title}</strong> - ${this.beerName}</li>`
+Review.prototype.addLatestReview = function() {
+  let reviewHtml = `<li><strong>${this.title} - ${this.beerName}</strong></li>`
+  return reviewHtml;
 }
 
 function getBeerReviews(id) {
@@ -72,11 +73,6 @@ function seeReview(userId, review_id) {
 //   }
 // }
 
-function addLatestReview(template) {
-  // $('.review-index-box').append("<li>" + "<strong>" + state.data.attributes.title + "</strong>" + "-" + state.data.relationships.beer.data.name + "</li>")
-  $('.review-index-box').append(template)
-}
-
 function attachListeners() {
 
   $('.see-review').on('click', function(e) {
@@ -101,14 +97,28 @@ function attachListeners() {
     $('.user-reviews-box').empty();
   });
 
-  $('#new_review').on('submit',function(e) {
+  // $('#new_review').on('submit',function(e) {
+  //     e.preventDefault();
+  //   let userId = document.getElementsByClassName("review-index-box")[0].id
+  //   let state = $(this).serialize();
+  //   $.post(`/users/${userId}/reviews`, state).done(function(data) {
+  //     let newReview = new Review(data.data.attributes.title, data.data.attributes.rating, data.data.relationships.beer.data.name);
+  //     let html = newReview.addLatestReview();
+  //     $('.review-index-box').append(html);
+  //   });
+  // })
+
+  $('#new_review').submit(function(e) {
     e.preventDefault();
-    const userId = document.getElementsByClassName("review-index-box")[0].id
-    const state = $(this).serialize();
+    let userId = document.getElementsByClassName("review-index-box")[0].id
+    let state = $(this).serialize();
     $.post(`/users/${userId}/reviews`, state).done(function(data) {
-      addLatestReview(data)
+      let newReview = new Review(data.data.attributes.title, data.data.attributes.rating, data.data.relationships.beer.data.name);
+      let html = newReview.addLatestReview();
+      $('.review-index-box').append(html);
+      $( ".form-submit-button" ).prop( "disabled", false );
     });
-  })
+  });
 
   // $('.submit-form-button').on('click', function(e) {
   //
