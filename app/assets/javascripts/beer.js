@@ -35,6 +35,7 @@ Review.prototype.displayUserReviews = function(userId) {
 Review.prototype.displayUserReview = function() {
   let userId = $('ol')[0].id
   let reviewHtml = `<h2>${this.title}</h2> <p>${this.text}</p> <button onClick=getUserReviews(${userId})>Go Back</button><button><a style="color:black; text-decoration:none" href="/users/${userId}/reviews/${this.id}/edit">Edit Review</a></button>`
+  reviewHtml += `<button><a style="color:black; text-decoration:none" data-confirm="Are you sure?" data-method="delete" href="/users/${userId}/reviews/${this.id}" rel="nofollow">Delete Review</a></button>`
   return reviewHtml;
 }
 
@@ -54,7 +55,7 @@ function getBeerReviews(id) {
     }
   });
 }
-
+// *** - Renders the clear button that is on the show page of a user with reviews.
 const clearButton = () => {
   $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
 }
@@ -86,6 +87,7 @@ function getUserReview(userId, reviewId) {
     $('.user-reviews-box').append(html);
   });
 }
+
 
 function reviewNewRefresh() {
   document.getElementById("new_review").reset()
@@ -126,10 +128,12 @@ function attachListeners() {
     let state = $(this).serialize();
     $.post(`/users/${userId}/reviews`, state).done(function(data) {
       if(typeof data === "object") {
+        let reviewId = data.data.id
         let reviewTitle = data.data.attributes.title;
         let reviewRating = data.data.attributes.rating;
         let reviewBeerName = data.data.relationships.beer.data.name;
-        let newReviewObj = new Review(reviewTitle, reviewRating, reviewBeerName);
+        let reviewText = data.data.attributes.text;
+        let newReviewObj = new Review(reviewId, reviewTitle, reviewRating, reviewBeerName, reviewText);
         let html = newReviewObj.displayLatestReview();
         $('.review-index-box').append(html);
         reviewNewRefresh();
@@ -140,7 +144,7 @@ function attachListeners() {
     });
   });
 
-// *** - Loads review index on the new review page.
+// *** - Loads review history on the new review page.
   if($("#new_review").length > 0){
     $(document).ready(function(e) {
       let userId = document.getElementsByClassName("review-index-box")[0].id
