@@ -7,7 +7,7 @@
 
 <h2><%= link_to "See Your Reviews", user_reviews_path(@user), id: "#{@user.id}", class: "user-reviews-link" %> </h2>
 
-<ol class="user-reviews-box">
+<ol id=<%= current_user.id %> class="user-reviews-box">
 
 </ol>
 

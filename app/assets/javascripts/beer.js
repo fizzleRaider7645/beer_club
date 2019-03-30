@@ -1,3 +1,4 @@
+// *** - Attaches event listeners after JS is loaded.
 $(document).on('turbolinks:load', function() {
   attachListeners();
 });
@@ -12,8 +13,8 @@ class Review {
     this.text = text;
   }
 }
-// *** - Appends a users latest review to a review index box on the new review view.
-Review.prototype.addLatestReview = function() {
+// *** - Appends a users' latest review to a review index div on the new review page.
+Review.prototype.displayLatestReview = function() {
   let reviewHtml = `<li><strong>${this.title}</strong> - ${this.beerName}</li>`
   return reviewHtml;
 }
@@ -26,7 +27,14 @@ Review.prototype.displayBeerReviews = function() {
 
 // *** - Displays all the reviews for a user on user show view.
 Review.prototype.displayUserReviews = function(userId) {
-  let reviewHtml = `<li><strong>${this.title}</strong> - ${this.beerName} <button onClick="seeReview(${userId}, ${this.id})">See Review</button></li> <br />`
+  let reviewHtml = `<li><strong>${this.title}</strong> - ${this.beerName} <button onClick="getUserReview(${userId}, ${this.id})">See Review</button></li><br />`
+  return reviewHtml;
+}
+
+// *** - Displays a single review/go back/review edit button, on user show view.
+Review.prototype.displayUserReview = function() {
+  let userId = $('ol')[0].id
+  let reviewHtml = `<h2>${this.title}</h2> <p>${this.text}</p> <button onClick=getUserReviews(${userId})>Go Back</button><button><a style="color:black; text-decoration:none" href="/users/${userId}/reviews/${this.id}/edit">Edit Review</a></button>`
   return reviewHtml;
 }
 
@@ -47,6 +55,10 @@ function getBeerReviews(id) {
   });
 }
 
+const clearButton = () => {
+  $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
+}
+
 function getUserReviews(userId) {
   $.get(`/users/${userId}/reviews` + `.json`, function(json) {
     $('.user-reviews-box').empty();
@@ -58,20 +70,20 @@ function getUserReviews(userId) {
       let jsReviewObj = new Review(reviewObj.id, reviewObj.attributes.title, reviewObj.attributes.rating, reviewObj.relationships.beer.data.name, reviewObj.attributes.text)
       let html = jsReviewObj.displayUserReviews(userId);
       $('.user-reviews-box').append(html);
-        // "<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + " <button onClick=" + `seeReview(${userId}` + "," + `${reviewObj.id})` + ">See Review</button>" + "</li> <br />"
     });
 
     if(json.data.length !== 0) {
-      $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
-    }
+      clearButton();
+    };
   });
 }
 
-function seeReview(userId, review_id) {
-  $.get(`/users/${userId}/reviews/${review_id}` + `.json`, function(json) {
+function getUserReview(userId, reviewId) {
+  $.get(`/users/${userId}/reviews/${reviewId}` + `.json`, function(json) {
     $('.user-reviews-box').empty();
-    $('.user-reviews-box').append(`<h2>${json.data.attributes.title}</h2> <p>${json.data.attributes.text}</p> <button onClick=getUserReviews(${json.data.relationships.user.data.id})>Go Back</button>`)
-    $('.user-reviews-box').append(`<button><a style="color:black; text-decoration:none" href='/users/${userId}/reviews/${review_id}/edit'>Edit Review</a></button>`)
+    let jsReviewObj = new Review(json.data.id, json.data.attributes.title, json.data.attributes.rating, json.data.relationships.beer.data.name, json.data.attributes.text)
+    let html = jsReviewObj.displayUserReview(json);
+    $('.user-reviews-box').append(html);
   });
 }
 
@@ -80,6 +92,7 @@ function reviewNewRefresh() {
   $(".form-submit-button" ).prop( "disabled", false );
 }
 
+// *** - Zippers all event listeners into one function.
 function attachListeners() {
 
   $('.see-review').on('click', function(e) {
@@ -100,10 +113,13 @@ function attachListeners() {
     getUserReviews(id);
   });
 
+
+// *** - Clear button event listener on the user reviews on the user show page.
   $('.user-reviews-box').on('click', '.clear-reviews-button', function(e) {
     $('.user-reviews-box').empty();
   });
 
+// *** - Submit review event listener on the new review page.
   $('#new_review').submit(function(e) {
     e.preventDefault();
     let userId = document.getElementsByClassName("review-index-box")[0].id
@@ -114,7 +130,7 @@ function attachListeners() {
         let reviewRating = data.data.attributes.rating;
         let reviewBeerName = data.data.relationships.beer.data.name;
         let newReviewObj = new Review(reviewTitle, reviewRating, reviewBeerName);
-        let html = newReviewObj.addLatestReview();
+        let html = newReviewObj.displayLatestReview();
         $('.review-index-box').append(html);
         reviewNewRefresh();
       } else {
@@ -124,6 +140,7 @@ function attachListeners() {
     });
   });
 
+// *** - Loads review index on the new review page.
   if($("#new_review").length > 0){
     $(document).ready(function(e) {
       let userId = document.getElementsByClassName("review-index-box")[0].id
