@@ -10,6 +10,6 @@ class Beer < ApplicationRecord
     reviews = self.reviews
     ratings = reviews.map { |review| review.rating }
     sum = ratings.reduce(:+)
-    sum / reviews.count
+    '%.2f' % "#{sum / reviews.count}"
   end
 end
