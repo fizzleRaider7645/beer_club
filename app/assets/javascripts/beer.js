@@ -97,26 +97,25 @@ function reviewNewRefresh() {
 // *** - Zippers all event listeners into one function.
 function attachListeners() {
 
+// *** - Event listener for 'see review' button on the user show page.
   $('.see-review').on('click', function(e) {
     let id = this.id
     e.preventDefault();
     getBeerReviews(id);
   });
-
+// *** - Event listener for the 'show beer reviews' button on the beers index page and show page.
   $('.beer-show-page-reviews').on('click', function(e) {
     let id = this.id
     e.preventDefault();
     getBeerReviews(id);
   });
-
+// *** - Event listener for 'see users' review' button on the user show page.
   $('.user-reviews-link').on('click', function(e) {
     let id = this.id
     e.preventDefault();
     getUserReviews(id);
   });
-
-
-// *** - Clear button event listener on the user reviews on the user show page.
+// *** - Event listener for clear button on the user show page.
   $('.user-reviews-box').on('click', '.clear-reviews-button', function(e) {
     $('.user-reviews-box').empty();
   });
@@ -150,7 +149,8 @@ function attachListeners() {
       let userId = document.getElementsByClassName("review-index-box")[0].id
       $.get(`/users/${userId}/reviews` + `.json`, function(json) {
         json.data.forEach(function(reviewObj) {
-          $('.review-index-box').append("<li>" + "<strong>" + reviewObj.attributes.title + "</strong>" + "-" + reviewObj.relationships.beer.data.name + "</li>")
+          let jsReviewObj = new Review(reviewObj.id, reviewObj.attributes.title, reviewObj.attributes.rating, reviewObj.relationships.beer.data.name, reviewObj.attributes.text)
+          $('.review-index-box').append(`<li><strong>${jsReviewObj.title}</strong> - ${jsReviewObj.beerName}</li>`);
         });
       });
     });
