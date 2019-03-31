@@ -38,9 +38,9 @@ Review.prototype.displayUserReview = function() {
   reviewHtml += `<button><a style="color:black; text-decoration:none" data-confirm="Are you sure?" data-method="delete" href="/users/${userId}/reviews/${this.id}" rel="nofollow">Delete Review</a></button>`
   return reviewHtml;
 }
-
 // (end) Review JS Object
 
+// *** - Gets a beers' reviews and apends to the DOM.
 function getBeerReviews(id) {
   $.get(`/beers/${id}/reviews` + `.json`, function(json) {
     $('#beer-review-box').empty();
@@ -78,7 +78,7 @@ function getUserReviews(userId) {
     };
   });
 }
-
+// *** - Gets a users' reviews and apends to the DOM.
 function getUserReview(userId, reviewId) {
   $.get(`/users/${userId}/reviews/${reviewId}` + `.json`, function(json) {
     $('.user-reviews-box').empty();
@@ -132,8 +132,8 @@ function attachListeners() {
         let reviewRating = data.data.attributes.rating;
         let reviewBeerName = data.data.relationships.beer.data.name;
         let reviewText = data.data.attributes.text;
-        let newReviewObj = new Review(reviewId, reviewTitle, reviewRating, reviewBeerName, reviewText);
-        let html = newReviewObj.displayLatestReview();
+        let jsReviewObj = new Review(reviewId, reviewTitle, reviewRating, reviewBeerName, reviewText);
+        let html = jsReviewObj.displayLatestReview();
         $('.review-index-box').append(html);
         reviewNewRefresh();
       } else {
