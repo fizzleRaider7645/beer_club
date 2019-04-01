@@ -134,6 +134,7 @@ function attachListeners() {
         let reviewText = data.data.attributes.text;
         let jsReviewObj = new Review(reviewId, reviewTitle, reviewRating, reviewBeerName, reviewText);
         let html = jsReviewObj.displayLatestReview();
+        debugger
         $('.review-index-box').append(html);
         reviewNewRefresh();
       } else {
