@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
   attachListeners();
 });
 
-// (start) Review JS Object
+// (start) JS Review Class
 class Review {
   constructor(id, title, rating, beerName, text) {
     this.id = id;
@@ -38,11 +38,11 @@ Review.prototype.displayUserReview = function() {
   reviewHtml += `<button><a style="color:black; text-decoration:none" data-confirm="Are you sure?" data-method="delete" href="/users/${userId}/reviews/${this.id}" rel="nofollow">Delete Review</a></button>`
   return reviewHtml;
 }
-// (end) Review JS Object
+// (end) JS Review Class
 
 // *** - Gets a beers' reviews and apends to the DOM.
 function getBeerReviews(id) {
-  $.get(`/beers/${id}/reviews` + `.json`, function(json) {
+  $.get(`/beers/${id}/reviews.json`, function(json) {
     $('#beer-review-box').empty();
     if(json.data.length == 0) {
       alert("No Reviews For This Beer!")
@@ -61,7 +61,7 @@ const clearButton = () => {
 }
 
 function getUserReviews(userId) {
-  $.get(`/users/${userId}/reviews` + `.json`, function(json) {
+  $.get(`/users/${userId}/reviews.json`, function(json) {
     $('.user-reviews-box').empty();
     if(json.data.length === 0) {
       alert("You Have Not Written Any Reviews Yet!")
@@ -78,9 +78,9 @@ function getUserReviews(userId) {
     };
   });
 }
-// *** - Gets a users' reviews and apends to the DOM.
+// *** - Gets a specific user review and apends to the DOM.
 function getUserReview(userId, reviewId) {
-  $.get(`/users/${userId}/reviews/${reviewId}` + `.json`, function(json) {
+  $.get(`/users/${userId}/reviews/${reviewId}.json`, function(json) {
     $('.user-reviews-box').empty();
     let jsReviewObj = new Review(json.data.id, json.data.attributes.title, json.data.attributes.rating, json.data.relationships.beer.data.name, json.data.attributes.text)
     let html = jsReviewObj.displayUserReview(json);
@@ -134,12 +134,12 @@ function attachListeners() {
         let reviewText = data.data.attributes.text;
         let jsReviewObj = new Review(reviewId, reviewTitle, reviewRating, reviewBeerName, reviewText);
         let html = jsReviewObj.displayLatestReview();
-        debugger
         $('.review-index-box').append(html);
         reviewNewRefresh();
       } else {
         alert("Must Enter a Title, Rating and Beer-Name to Submit!")
-        reviewNewRefresh();
+        // reviewNewRefresh();
+        $(".form-submit-button" ).prop( "disabled", false );
       }
     });
   });
@@ -148,7 +148,7 @@ function attachListeners() {
   if($("#new_review").length > 0){
     $(document).ready(function(e) {
       let userId = document.getElementsByClassName("review-index-box")[0].id
-      $.get(`/users/${userId}/reviews` + `.json`, function(json) {
+      $.get(`/users/${userId}/reviews.json`, function(json) {
         json.data.forEach(function(reviewObj) {
           let jsReviewObj = new Review(reviewObj.id, reviewObj.attributes.title, reviewObj.attributes.rating, reviewObj.relationships.beer.data.name, reviewObj.attributes.text)
           $('.review-index-box').append(`<li><strong>${jsReviewObj.title}</strong> - ${jsReviewObj.beerName}</li>`);

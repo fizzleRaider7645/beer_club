@@ -1,5 +1,9 @@
 Beer Club
 
+FOR FUTURE CONSIDERATION: 1. Add user ranking system based on beer cred.
+                          2.
+
+
 Description: Users can log, describe, rate beers they've consumed, and share
 recommendations with friends.
 
