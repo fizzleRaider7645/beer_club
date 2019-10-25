@@ -1,5 +1,6 @@
-<h1>Welcome to Beer Club</h1>
-<h2>Newly Reviewed Beers</h2>
+<div class="session-container">
+<h1 class="session-title">Welcome to Beer Club</h1>
+<h2 class="session-title">Newly Reviewed Beers</h2>
 <ul>
 <% Beer.new_to_beer_club.each do |beer| %>
 <li><%= beer.name %></li>
@@ -17,10 +18,8 @@
 <% end %>
 
 <p><%= form_tag ({controller: 'sessions', action: 'login', method: 'post'}) do %>
-   <%= label_tag "Username:" %>
-   <%= text_field_tag :username %><br />
-   <%= label_tag "Password:" %>
-   <%= password_field_tag :password %><br />
+   <%= text_field_tag :username, "", placeholder: 'Username' %><br />
+   <%= password_field_tag :password, "", placeholder: "Password" %><br />
    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
    <%= submit_tag "Login" %>
 <% end %></p>
@@ -30,3 +29,4 @@
 <p><%= button_tag(:type => 'button') do %>
   <% link_to "Create an Account", new_user_path, { :class=>"button_link" } %>
 <% end %></p>
+</div>
