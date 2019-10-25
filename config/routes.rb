@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :medals, only: [:index, :show]
-    resources :beers, only: [:show, :index]
+    resources :beers, only: [:show, :index, :new]
     resources :reviews
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

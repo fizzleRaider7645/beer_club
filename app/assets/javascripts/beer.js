@@ -60,6 +60,17 @@ const clearButton = () => {
   $('.user-reviews-box').append("<button type='button' class='clear-reviews-button'>Clear Reviews</button>")
 }
 
+function sortReviews(userId) {
+  $('.user-reviews-box').empty();
+  $.get(`/users/${userId}/reviews.json`, function(json) {
+    if(json.data.length === 0) {
+      alert("You Have Not Written Any Reviews Yet!")
+    }
+    json.data.sort((a, b) => a.attributes.title < b.attributes.title  ? -1 : 1 )
+    console.log(json)
+  });
+}
+
 function getUserReviews(userId) {
   $.get(`/users/${userId}/reviews.json`, function(json) {
     $('.user-reviews-box').empty();
@@ -75,6 +86,7 @@ function getUserReviews(userId) {
 
     if(json.data.length !== 0) {
       clearButton();
+      $('.user-reviews-box').append(`<button onclick='sortReviews(${userId})'>Sort Reviews</button>`)
     };
   });
 }
@@ -88,7 +100,7 @@ function getUserReview(userId, reviewId) {
   });
 }
 
-
+// *** - Refreshes the new review form after successful submit
 function reviewNewRefresh() {
   document.getElementById("new_review").reset()
   $(".form-submit-button" ).prop( "disabled", false );
@@ -96,6 +108,10 @@ function reviewNewRefresh() {
 
 // *** - Zippers all event listeners into one function.
 function attachListeners() {
+
+  $('.sort-reviews-button').on('click', function(e) {
+    alert('clicking')
+  });
 
 // *** - Event listener for 'see review' button on the user show page.
   $('.see-review').on('click', function(e) {
@@ -115,6 +131,7 @@ function attachListeners() {
     e.preventDefault();
     getUserReviews(id);
   });
+
 // *** - Event listener for clear button on the user show page.
   $('.user-reviews-box').on('click', '.clear-reviews-button', function(e) {
     $('.user-reviews-box').empty();
@@ -138,7 +155,6 @@ function attachListeners() {
         reviewNewRefresh();
       } else {
         alert("Must Enter a Title, Rating and Beer-Name to Submit!")
-        // reviewNewRefresh();
         $(".form-submit-button" ).prop( "disabled", false );
       }
     });
