@@ -4,16 +4,19 @@
     font-family: 'Staatliches', cursive;
   }
 </style>
+
 <header>
-<img src="/BeerClubLogo.png" alt="Beer Club Logo">
+
 </header>
+
+<img id="beer-club-logo" src="/BeerClubLogo.png" alt="Beer Club Logo">
 <div class="session-container">
 <h1 class="session-title">Welcome to Beer Club</h1>
 <h2 class="session-title">Newly Reviewed Beers</h2>
 
 <ul id="newly-reviewed-beers-list">
 <% Beer.new_to_beer_club.each do |beer| %>
-<li><%= beer.name %></li>
+<li><%=beer.reviews.first.date.strftime('%B %e, %Y') %> -  <%= beer.name %></li>
 <% end %>
 </ul>
 

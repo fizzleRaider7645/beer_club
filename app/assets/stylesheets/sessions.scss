@@ -8,17 +8,35 @@
     box-sizing: border-box;
   }
 
+
+
+
 .session-container {
     margin: auto;
     width: 50%;
     padding: 10px;
     text-align: center
-    // font-family: 'Staatliches', cursive;
     
+}
+
+.session-title {
+    background-color: yellow;
 }
 
 ul#newly-reviewed-beers-list {
     list-style-type: none;
-
-    
+    height: 5em;
+    overflow: auto;
 }
+
+
+
+
+#beer-club-logo {
+    max-height: 17em;
+    max-width: 17em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}   
