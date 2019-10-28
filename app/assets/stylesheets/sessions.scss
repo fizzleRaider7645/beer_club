@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
 * {
     box-sizing: border-box;
   }
@@ -11,9 +13,12 @@
     width: 50%;
     padding: 10px;
     text-align: center
+    // font-family: 'Staatliches', cursive;
+    
 }
 
 ul#newly-reviewed-beers-list {
     list-style-type: none;
-    border-style: double;
+
+    
 }
