@@ -1,11 +1,13 @@
 <div class="session-container">
 <h1 class="session-title">Welcome to Beer Club</h1>
 <h2 class="session-title">Newly Reviewed Beers</h2>
-<ul>
+
+<ul id="newly-reviewed-beers-list">
 <% Beer.new_to_beer_club.each do |beer| %>
 <li><%= beer.name %></li>
 <% end %>
 </ul>
+
 <br>
 
 <% if @user && @user.errors.any? %>
