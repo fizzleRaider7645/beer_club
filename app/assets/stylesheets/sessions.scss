@@ -4,17 +4,16 @@
 
 
 
-* {
-    box-sizing: border-box;
-  }
+// * {
+//     box-sizing: border-box;
+//   }
 
-  body {
-    //   border-top: solid;
-      border-left: solid;
-      border-right: solid;
-      border-color: yellow;
-      border-width: 7em;
-  }
+//   body {
+//       border-left: solid;
+//       border-right: solid;
+//       border-color: yellow;
+//       border-width: 5em;
+//   }
 
 
 #error_explanation {
@@ -26,8 +25,7 @@
     border: yellow;
     width: 50%;
     padding: 10px;
-    text-align: center
-    
+    text-align: center;
 }
 
 .session-title {
@@ -57,16 +55,16 @@ ul#newly-reviewed-beers-list {
 }
 
   
-  .button {
-    background-color: yellow;
-    color: white;
-    min-height: 2.5em;
-  }
+//   .button {
+//     background-color: yellow;
+//     color: white;
+//     min-height: 2.5em;
+//   }
 
-  .button a {
-      text-decoration: none;
-      color: black;
-  }
+//   .button a {
+//       text-decoration: none;
+//       color: black;
+//   }
   
   #username {
       text-align: center;
@@ -77,10 +75,9 @@ ul#newly-reviewed-beers-list {
     text-align: center;
     background: #ffcc00;
     min-height: 2.5em;
-    // min-width: 10em;
   }
 
-  input[type="submit"] {
+  .session-login {
       background-color: black;
       color: white;
       min-height: 2.5em;

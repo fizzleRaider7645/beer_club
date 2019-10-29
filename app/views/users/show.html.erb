@@ -1,5 +1,17 @@
-<h1>Hello, <%= @user.username %></h1>
-<h3>Beer Cred: <%= @user.status %></h3>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Staatliches&display=swap');
+  * {
+    font-family: 'Staatliches', cursive;
+  }
+</style>
+
+<header id="user-show-header">
+  <h1>Beer Club</h1>
+</header>
+
+<h2>Hello, <%= @user.username %></h2>
+<h3 id="beer-cred">Beer Cred: <div id="cred-num"><%= @user.status %></div></h3>
+<%= button_to "Log Out", logout_path %>
 <div class="user-show-menu">
 
 <h2><%= link_to "Write a New Review", new_user_review_path(@user) %></h2>
@@ -18,11 +30,9 @@
 
 </div>
 
-<%= button_to "Log Out", logout_path %>
-
-<p><%= button_tag(:type => 'button') do %>
+<%= button_tag(:type => 'button') do %>
   <%= link_to 'Delete Account',
                        user_path(@user),
                        method: :delete,
                        data: { confirm: 'Are you sure?' } %>
-                       <% end %></p>
+                       <% end %>

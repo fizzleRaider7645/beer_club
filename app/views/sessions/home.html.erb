@@ -5,10 +5,6 @@
   }
 </style>
 
-<header>
-
-</header>
-
 <img id="beer-club-logo" src="/BeerClubLogo.png" alt="Beer Club Logo">
 <div class="session-container">
 <h1 class="session-title">Welcome to Beer Club</h1>
@@ -35,7 +31,7 @@
    <%= text_field_tag :username, "", placeholder: 'Username' %>
    <%= password_field_tag :password, "", placeholder: "Password" %>
    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-   <%= submit_tag "Login" %>
+   <%= submit_tag "Login", :class => 'session-login' %>
 <% end %></p>
 <p><%= button_tag(:type => 'button', :class => 'button') do %>
 <%= link_to('Log in with GitHub', '/auth/github') %>

@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+
+ body {
+    border-left: solid;
+    border-right: solid;
+    border-color: yellow;
+    border-width: 5em;
+}
+
+input[type="submit"] {
+    background-color: black;
+    color: white;
+    min-height: 2.5em;
+}
+
+button {
+    text-align: center;
+    background: #ffcc00;
+    min-height: 2.5em;
+}
+button a {
+    text-decoration: none;
+    color: black;
+}
