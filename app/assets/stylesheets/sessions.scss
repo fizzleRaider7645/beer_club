@@ -8,6 +8,14 @@
     box-sizing: border-box;
   }
 
+  body {
+    //   border-top: solid;
+      border-left: solid;
+      border-right: solid;
+      border-color: yellow;
+      border-width: 7em;
+  }
+
 
 #error_explanation {
     color: red;
@@ -15,6 +23,7 @@
 
 .session-container {
     margin: auto;
+    border: yellow;
     width: 50%;
     padding: 10px;
     text-align: center
@@ -26,8 +35,10 @@
 }
 
 ul#newly-reviewed-beers-list {
-    border-style: dotted;
-    border-color: #ffcc00;
+    border-style: solid;
+    border-color: black;
+    border-width: .1em;
+    border-radius: 25px;
     list-style-type: none;
     height: 7em;
     overflow: auto;
@@ -49,6 +60,7 @@ ul#newly-reviewed-beers-list {
   .button {
     background-color: yellow;
     color: white;
+    min-height: 2.5em;
   }
 
   .button a {
