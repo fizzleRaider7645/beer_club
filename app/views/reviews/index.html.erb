@@ -1,4 +1,6 @@
-<h1>Reviews</h1>
+
+<div id="beer-review-index-div">
+<h1-id="beer-review-index-h1">Reviews</h1>
 <h2><%= no_reviews %></h2>
 <ul>
 <% @reviews.sort_by { |review| review.date }.reverse.each do |review| %>
@@ -6,3 +8,4 @@
     user_review_path(review.user, review) %> - <%= link_to review.user.username, user_reviews_path(review.user) %></li>
 <% end %>
 </ul>
+</div>
