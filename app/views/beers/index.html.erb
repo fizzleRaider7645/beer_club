@@ -1,5 +1,11 @@
-<h1>Beers Reviwed on BeerClub</h1>
-<ul>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Staatliches&display=swap');
+  * {
+    font-family: 'Staatliches', cursive;
+  }
+</style>
+<h1 id="beer-index-h1">Beers Reviwed on BeerClub</h1>
+<ul id="beer-index-ul">
 <% @beers.each do |beer| %>
   <li><%= link_to beer.name, beer_path(beer) %> - Rating: <%= beer.rating %> - <a href="" id="<%= beer.id %>" class="see-review">See Reviews</a></li>
   <br>
