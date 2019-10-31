@@ -10,8 +10,14 @@
 </header>
 
 <h2>Hello, <%= @user.username %></h2>
-<h3 id="beer-cred">Beer Cred: <div id="cred-num"><%= @user.status %></div></h3>
 <%= button_to "Log Out", logout_path %>
+<%= button_tag(:type => 'button') do %>
+  <%= link_to 'Delete Account',
+                       user_path(@user),
+                       method: :delete,
+                       data: { confirm: 'Are you sure?' } %>
+                       <% end %>
+<h3 id="beer-cred">Beer Cred: <div id="cred-num"><%= @user.status %></div></h3>
 <div class="user-show-menu">
 
 <h2><%= link_to "Write a New Review", new_user_review_path(@user) %></h2>
@@ -29,10 +35,3 @@
 <h2><%= link_to "Beers", beers_path %></h2>
 
 </div>
-
-<%= button_tag(:type => 'button') do %>
-  <%= link_to 'Delete Account',
-                       user_path(@user),
-                       method: :delete,
-                       data: { confirm: 'Are you sure?' } %>
-                       <% end %>
