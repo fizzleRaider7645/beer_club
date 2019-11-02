@@ -12,11 +12,6 @@
     text-align: center;
 }
 
-
-#session-container {
-    text-align: center;
-}
-
 #session-form {
     height: 100px;
 }
@@ -73,5 +68,6 @@ ul#newly-reviewed-beers-list {
 
   .button {
     background-color: #ffcc00;
+    min-height: 2.5em;
   }
   

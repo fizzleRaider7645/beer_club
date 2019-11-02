@@ -3,31 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-// body {
-//     text-align: center
-// }
-
-// .user-show-menu a {
-//     text-decoration: none;
-//     color: black;
-//     background-color: yellow;
-// }
-
-// #user-show-header {
-//     background-color: black;
-// }
-
+#user-show-container {
+    text-align: center;
+}
 
 #user-show-header h1{
     color: white;
     text-shadow: 5px 5px 0px black, 7px 7px 0px #ffcc00;
     font-size: 5em;
+    text-align: center;
+    background-color: black;
 }
 
 
 #beer-cred {
     color: #ffcc00;
-    background-color: black;
 
 }
 
