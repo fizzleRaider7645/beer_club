@@ -7,54 +7,71 @@
     color: red;
 }
 
-// .session-container {
-//     margin: auto;
-//     border: yellow;
-//     width: 50%;
-//     padding: 10px;
-//     text-align: center;
-// }
-
-// .session-title {
-//     background-color: yellow;
-// }
-
-// ul#newly-reviewed-beers-list {
-//     border-style: solid;
-//     border-color: black;
-//     border-width: .1em;
-//     border-radius: 25px;
-//     list-style-type: none;
-//     height: 7em;
-//     overflow: auto;
-// }
+#session-container {
+    padding-top: 3.7em;
+    text-align: center;
+}
 
 
+#session-container {
+    text-align: center;
+}
+
+#session-form {
+    height: 100px;
+}
+
+.session-title {
+    background-color: yellow;
+}
+
+ul#newly-reviewed-beers-list {
+    border-style: solid;
+    border-color: black;
+    border-width: .1em;
+    border-radius: 25px;
+    list-style-type: none;
+    height: 7em;
+    padding-top:1em;
+    padding-right: 1em;
+    overflow: auto;
+}
 
 
-// #beer-club-logo {
-//     max-height: 17em;
-//     max-width: 17em;
-//     display: block;
-//     margin-left: auto;
-//     margin-right: auto;
-//     width: 50%;
-// }
+
+#beer-club-logo {
+    max-height: 30em;
+    max-width: 30em;
+}
 
   
-//   #username {
-//       text-align: center;
-//       background: #ffcc00;
-//       min-height: 2.5em;
-//   }
-//   #password {
-//     text-align: center;
-//     background: #ffcc00;
-//     min-height: 2.5em;
-//   }
+  #username {
+      text-align: center;
+      background: #ffcc00;
+      min-height: 2.5em;
+      min-width: 10em;
+  }
 
-//   .session-login {
-//       background-color: black;
-//       color: white;
-//       min-height: 2.5em;
-//   }
+  #password {
+    text-align: center;
+    background: #ffcc00;
+    min-height: 2.5em;
+    min-width: 10em;
+  }
+
+  .session-login {
+      background-color: black;
+      color: white;
+      min-height: 2.5em;
+      min-width: 10em;
+  }
+
+  .button a {
+      text-decoration: none;
+      color: black;
+  }
+
+  .button {
+    background-color: #ffcc00;
+  }
+  
