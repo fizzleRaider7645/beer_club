@@ -4,19 +4,19 @@
 <h3 id="beer-cred"><span id="cred-text">Beer Cred </span><span id="cred-num"><%= @user.status %></span></h3>
 <div class="user-show-menu">
 
-<h2><%= link_to "Write a New Review", new_user_review_path(@user) %></h2>
+<h2 class="user-show-menu-h2"><span><%= link_to "Write a New Review", new_user_review_path(@user) %></span></h2>
 
-<h2><%= link_to "Community Reviews", reviews_path %></h2>
+<h2 class="user-show-menu-h2"><span><%= link_to "Community Reviews", reviews_path %></span></h2>
 
-<h2><%= link_to "See Your Reviews", user_reviews_path(@user), id: "#{@user.id}", class: "user-reviews-link" %> </h2>
+<h2 class="user-show-menu-h2"><span><%= link_to "See Your Reviews", user_reviews_path(@user), id: "#{@user.id}", class: "user-reviews-link" %></span></h2>
 
 <ol id=<%= current_user.id %> class="user-reviews-box">
 
 </ol>
 
-<h2><%= link_to "See Your Medals", user_medals_path(@user) %></h2>
+<h2 class="user-show-menu-h2"><span><%= link_to "See Your Medals", user_medals_path(@user) %></span></h2>
 
-<h2><%= link_to "Beers", beers_path %></h2>
+<h2 class="user-show-menu-h2"><span><%= link_to "Beers", beers_path %></span></h2>
 
 </div>
 <%= button_to "Log Out", logout_path %>
