@@ -1,10 +1,7 @@
-<header id="user-show-header">
-  <h1>Beer Club</h1>
-</header>
-
 <div id="user-show-container">
+<h1>Beer Club</h1>
 <h2>Hello, <%= @user.username %></h2>
-<h3 id="beer-cred">Beer Cred: <div id="cred-num"><%= @user.status %></div></h3>
+<h3 id="beer-cred"><span id="cred-text">Beer Cred </span><span id="cred-num"><%= @user.status %></span></h3>
 <div class="user-show-menu">
 
 <h2><%= link_to "Write a New Review", new_user_review_path(@user) %></h2>

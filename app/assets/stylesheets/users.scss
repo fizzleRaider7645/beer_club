@@ -4,6 +4,7 @@
 
 
 #user-show-container {
+    padding-top: 10em;
     text-align: center;
 }
 
@@ -12,22 +13,23 @@
     color: black;
 }
 
-#user-show-header h1{
-    color: white;
-    text-shadow: 5px 5px 0px black, 7px 7px 0px #ffcc00;
+#user-show-container h1{
+    color: black;
+    text-shadow: 5px 5px 0px #ffcc00, 7px 7px 0px yellow;
     font-size: 5em;
     text-align: center;
-    background-color: black;
 }
 
 
-#beer-cred {
+#beer-cred #cred-num{
     color: #ffcc00;
+    background-color: black;
 
 }
 
-#cred-num {
-    color: red;
+#beer-cred #cred-text {
+    background-color: #ffcc00;
+    color: black;
 }
 
 .user-reviews-box {
