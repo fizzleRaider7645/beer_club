@@ -1,3 +1,3 @@
-<%= button_tag(:type => 'button') do %>
+<%= button_tag(:type => 'button', :id=>'footer-button') do %>
   <% link_to "Return to #{current_user.username}", '/', { :class=>"button_link" } %>
 <% end %>

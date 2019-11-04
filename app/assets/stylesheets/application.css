@@ -23,3 +23,8 @@
 html, body {
     padding: 5em;
   }
+
+  #footer-button a {
+    text-decoration: none;
+    color: white;
+  }
