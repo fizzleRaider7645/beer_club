@@ -16,7 +16,7 @@
     height: 100px;
 }
 
-.session-title {
+.session-title span {
     background-color: yellow;
 }
 
@@ -54,12 +54,12 @@ ul#newly-reviewed-beers-list {
     min-width: 10em;
   }
 
-  .session-login {
-      background-color: black;
-      color: white;
-      min-height: 2.5em;
-      min-width: 10em;
-  }
+//   .session-login {
+//       background-color: black;
+//       color: white;
+//       min-height: 2.5em;
+//       min-width: 10em;
+//   }
 
   .button a {
       text-decoration: none;
@@ -70,4 +70,10 @@ ul#newly-reviewed-beers-list {
     background-color: #ffcc00;
     min-height: 2.5em;
   }
+
+  input[type="submit"] {
+    background-color: #ffcc00;
+    color: black;
+    min-height: 2.5em;
+}
   

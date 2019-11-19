@@ -22,7 +22,11 @@ class ApplicationController < ActionController::Base
     if params[:controller] == "users"
       id = params[:id].to_i
     else
-      id = params[:user_id].to_i
+      if params[:user_id]
+        id = params[:user_id].to_i
+      else
+        id = current_user.id if logged_in?
+      end
     end
     redirect_to '/' unless id == current_user.id
   end

@@ -4,7 +4,7 @@
 
 
 #user-show-container {
-    padding-top: 10em;
+    // padding-top: 10em;
     text-align: center;
 }
 
@@ -23,15 +23,20 @@
 
 
 #beer-cred #cred-num{
-    color: #ffcc00;
+    border: solid;
+    color:red;
     background-color: black;
+    border-color: black;
 
 }
 
 #beer-cred #cred-text {
+    border: solid;
     background-color: #ffcc00;
     color: black;
 }
+
+
 
 .user-reviews-box {
     list-style: none;

@@ -10,7 +10,6 @@
 <ul id="error-messages-list">
 
 </ul>
-
 <%= form_for @review, :url => {:action => "create"} do |f| %>
 <%= render :partial => "form", :locals=>{:f=>f} %>
   <%= f.fields_for :beer, review_beer do |b| %>
@@ -18,7 +17,7 @@
   <% end %>
   <%= f.submit 'Submit', class: 'form-submit-button' %>
 <% end %>
-
+</div>
 
 <ul>
 <% review_errors.each do |msg| %>

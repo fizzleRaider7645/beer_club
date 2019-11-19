@@ -2,8 +2,8 @@
 
 <div id="session-media">
   <img id="beer-club-logo" src="/BeerClubLogo.png" alt="Beer Club Logo">
-  <h1 class="session-title">Welcome to Beer Club</h1>
-  <h2 class="session-title">Newly Reviewed Beers</h2>
+  <h1 class="session-title"><span>Welcome to Beer Club</span></h1>
+  <h2 class="session-title"><span>Newly Reviewed Beers</span></h2>
 </div>
 
 <div id="session-ul-and-errors">
@@ -31,7 +31,7 @@
   <% end %>
 
   <p><%= button_tag(:type => 'button', :class => 'button') do %>
-  <%= link_to('Log in with GitHub', '/auth/github') %>
+  <%= link_to('Login with GitHub', '/auth/github') %>
   <% end %></p>
   <%= button_tag(:type => 'button', :class => 'button') do %>
     <% link_to "Create an Account", new_user_path, { :class=>"button_link" } %>
