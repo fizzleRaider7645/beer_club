@@ -31,6 +31,6 @@ The gem is available as open source under the terms of the
 
 ## Code of Conduct
 
-Everyone interacting in the Fantasy Basketball project’s codebases, issue
+Everyone interacting in the Beer Club project’s codebases, issue
 trackers, chat rooms and mailing lists is expected to follow the
 [code of conduct](https://github.com/[USERNAME]/beer_club/blob/master/CODE_OF_CONDUCT.md).
